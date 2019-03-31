@@ -1,7 +1,7 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
         <head>
-        <title> Stateline Industries LLC</title>
+        <title> ThatzTheApp</title>
         <meta charset="utf-8">
         <link href="/cse201/styling/style.css" rel="stylesheet">
         <link href="/cse201/styling/modalStyle.css" rel="stylesheet">
@@ -19,6 +19,7 @@
             <div class="bar3"></div>
         </div>
         <ul id="menu-box" class="sidenav">
+            <li><a href="/cse201/login.php">Login</a></li>
             <li><a href="/cse201/destroy.php">Log Out</a></li>
             <li><a onclick="document.getElementById('id01').style.display='block'">AddUser</a></li>
         </ul>
@@ -28,8 +29,8 @@
     <body>
         <div id="id01" class="modal">
 
-            <form class="modal-content animate" onSubmit="        return checkPassword(this)" action="/cse201/addUser.php" method="POST">
-            <span onclick="        document.getElementById('id01').style.display = 'none'" class="close" title="Close Modal">&times;</span>
+            <form class="modal-content animate" onSubmit="return checkPassword(this)" action="/cse201/addUser.php" method="POST">
+            <span onclick="document.getElementById('id01').style.display = 'none'" class="close" title="Close Modal">&times;</span>
 
             <label for="uname"><b>Username</b></label>
             <input type="text" placeholder="Enter Username" name="username" required>
@@ -46,7 +47,7 @@
             <button type="submit">AddUser</button>
 
             <div class="container" style="background-color:#f1f1f1">
-            <button type="button" onclick="        document.getElementById('id01').style.display = 'none'" class="cancelbtn">Cancel</button>
+            <button type="button" onclick="document.getElementById('id01').style.display = 'none'" class="cancelbtn">Cancel</button>
             </div>
             </form>
         </div>

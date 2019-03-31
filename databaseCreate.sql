@@ -1,46 +1,51 @@
 ﻿CREATE TABLE users (
-    userID INT IDENTITY (1,1) NOT NULL PRIMARY KEY,
+    userID INT(1) AUTO_INCREMENT NOT NULL PRIMARY KEY,
     username NVARCHAR(100) NOT NULL,
     name NVARCHAR(100) NOT NULL,
     passhash NVARCHAR(255) NOT NULL
 );
-GO 
 
 CREATE TABLE libraries (
-    libraryID INT IDENTITY (1,1) NOT NULL PRIMARY KEY,
+    libraryID INT(1) AUTO_INCREMENT NOT NULL PRIMARY KEY,
     libraryName NVARCHAR(100) NOT NULL,
     libraryAddress NVARCHAR(100) NOT NULL
 );
-GO
 
 CREATE TABLE books (
-    bookID INT IDENTITY (1,1) NOT NULL PRIMARY KEY,
+    bookID INT(1) AUTO_INCREMENT NOT NULL PRIMARY KEY,
     bookName NVARCHAR(255) NOT NULL,
-    bookAddition NVARCHAR(50) DEFAULT 'Unkown',
-    author NVARCHAR(100) DEFAULT 'unkown',
+    bookAddition NVARCHAR(50),
+    author NVARCHAR(100),
     filePath NVARCHAR(255),
-    FK_libraryID INT FOREIGN KEY REFERENCES libraries(libraryID)
-    ON DELETE CASCADE
-    ON UPDATE CASCADE
+    libraryID INT NOT NULL,
+    FOREIGN KEY FK_libraryID(libraryID) 
+    REFERENCES libraries(libraryID)
+        ON UPDATE CASCADE
+        ON DELETE CASCADE
 );
-GO
 
 CREATE TABLE reviews (
-    reviewID INT IDENTITY (1,1) NOT NULL PRIMARY KEY,
+    reviewID INT(1) AUTO_INCREMENT NOT NULL PRIMARY KEY,
     review  INT NOT NULL,
-    FK_bookID INT FOREIGN KEY REFERENCES books(bookID)
-    ON DELETE CASCADE
-    ON UPDATE CASCADE
-)
+    bookID INT NOT NULL,
+    FOREIGN KEY FK_bookID(bookID) 
+    REFERENCES books(bookID)
+        ON DELETE CASCADE
+        ON UPDATE CASCADE
+);
 
 CREATE TABLE comments (
-    commentID INT IDENTITY (1,1) NOT NULL PRIMARY KEY,
+    commentID INT(1) AUTO_INCREMENT NOT NULL PRIMARY KEY,
     commentContents TEXT,
+    fkbookID INT NOT NULL,
+    fkuserID INT NOT NULL,
     commentTitle NVARCHAR(255),
-    FK_userID INT FOREIGN KEY REFERENCES users(userID)
-    ON DELETE CASCADE
-    ON UPDATE CASCADE,
-    FK_bookID INT FOREIGN KEY REFERENCES books(bookID)
-    ON DELETE CASCADE
-    ON UPDATE CASCADE
-)
+    FOREIGN KEY FKuserID(fkuserID) 
+    REFERENCES users(userID)
+        ON DELETE CASCADE
+        ON UPDATE CASCADE,
+    FOREIGN KEY FKbookID(fkbookID) 
+    REFERENCES books(bookID)
+        ON DELETE CASCADE
+        ON UPDATE CASCADE
+);

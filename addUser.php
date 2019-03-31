@@ -19,12 +19,10 @@ if($_SERVER['REQUEST_METHOD'] === 'POST' /**&& username,  password correct */) {
             $username = $_POST['username'];
             $password = $_POST['password'];
             $position = $_POST['position'];
-
             $options = [
                 'cost' => 12
             ];
             $passhash = password_hash($password, PASSWORD_BCRYPT, $options);
-
             $statement->bindparam(":username", $username);
             $statement->bindparam(":passhash", $passhash);
             $statement->bindparam(":position", $position);

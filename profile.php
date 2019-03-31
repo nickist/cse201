@@ -19,9 +19,9 @@ if($_SERVER['REQUEST_METHOD'] === 'POST') {
             $verify = $results[2];
             if(password_verify($password, $verify)) {
                 $_SESSION['user'] = $results[0];
-                header('location: /stateline/index.php');
+                header('location: /cse201/index.php');
             } else {
-                header('location: /stateline/login.html');
+                header('location: /cse201/login.html');
             }
         
     }catch(PDOException $e) {
@@ -29,7 +29,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 $con = null;
 }else {
-    header('location: /stateline/index.php');
+    header('location: /cse201/index.php');
 }
 ?>
 
@@ -37,25 +37,25 @@ $con = null;
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title> Stateline Industries LLC</title>
+<title> ThatzTheApp</title>
 <meta charset="utf-8">
-<link href="/stateline/styling/style.css" rel="stylesheet">
-<link href="/stateline/styling/modalStyle.css" rel="stylesheet">
-<script src="/stateline/scripts/index.js"></script>
+<link href="/cse201/styling/style.css" rel="stylesheet">
+<link href="/cse201/styling/modalStyle.css" rel="stylesheet">
+<script src="/cse201/scripts/index.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 
 <body>
 
 <header>
-  <h1>Stateline Industries LLC</h1> 
+  <h1>ThatzTheApp</h1> 
     <div class="container" onclick="toggleMenu(this)">
     <div class="bar1"></div>
     <div class="bar2"></div>
     <div class="bar3"></div>
     </div>
     <ul id="menu-box" class="sidenav">
-    <li><a href="/stateline/destroy.php">Log Out</a></li>
+    <li><a href="/cse201/destroy.php">Log Out</a></li>
     <li><a onclick="document.getElementById('id01').style.display='block'">AddUser</a></li>
     </ul>
 
@@ -69,7 +69,7 @@ $con = null;
 <body>
 <div id="id01" class="modal">
   
-  <form class="modal-content animate" onSubmit = "return checkPassword(this)" action="/stateline/addUser.php" method="POST">
+  <form class="modal-content animate" onSubmit = "return checkPassword(this)" action="/cse201/addUser.php" method="POST">
       <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
 
       <label for="uname"><b>Username</b></label>

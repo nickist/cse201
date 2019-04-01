@@ -19,14 +19,34 @@
             <div class="bar3"></div>
         </div>
         <ul id="menu-box" class="sidenav">
-            <li><a href="/cse201/login.php">Login</a></li>
-            <li><a href="/cse201/destroy.php">Log Out</a></li>
+            <span class="login"><li><a onclick="document.getElementById('id02').style.display='block'">Login</a></li></span>
+            <span class="logout" ><li><a href="/cse201/destroy.php">Log Out</a></li></span>
             <li><a onclick="document.getElementById('id01').style.display='block'">AddUser</a></li>
         </ul>
 
         </header>
 
     <body>
+
+        <div id="id02" class="modal">
+
+            <form class="modal-content animate" onSubmit="return checkPassword(this)" action="/cse201/login.php" method="POST">
+            <span onclick="document.getElementById('id01').style.display = 'none'" class="close" title="Close Modal">&times;</span>
+
+            <label for="uname"><b>Username</b></label>
+            <input type="text" placeholder="Enter Username" name="username" required>
+
+            <label for="psw"><b>Password</b></label>
+            <input type="password" placeholder="Enter Password" name="password" required>
+
+            <button type="submit">AddUser</button>
+
+            <div class="container" style="background-color:#f1f1f1">
+            <button type="button" onclick="document.getElementById('id01').style.display = 'none'" class="cancelbtn">Cancel</button>
+            </div>
+            </form>
+        </div>
+
         <div id="id01" class="modal">
 
             <form class="modal-content animate" onSubmit="return checkPassword(this)" action="/cse201/addUser.php" method="POST">
@@ -34,6 +54,9 @@
 
             <label for="uname"><b>Username</b></label>
             <input type="text" placeholder="Enter Username" name="username" required>
+
+             <label for="name"><b>Username</b></label>
+            <input type="text" placeholder="Name" name="name" required>
 
             <label for="psw"><b>Password</b></label>
             <input type="password" placeholder="Enter Password" name="password" required>
@@ -63,7 +86,6 @@
                 }
             }
         </script>
-
             <div class="content">
 
             </div>

@@ -11,7 +11,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST') {
         $connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         if(!isset($_POST['username'], $_POST['password'])){
             die('Username and/or password does not exist!');
-            header('location: /cse201/login.html');
+            header('location: /cse201/index.html');
         }else {
             
             $username = htmlspecialchars($_POST['username']);
@@ -26,8 +26,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $_SESSION['user'] = $results[0];
                 header('location: /cse201/index.html');
             } else {
-                echo "fail";
-                //header('location: /cse201/login.html');
+                header('location: /cse201/index.html');
             }
         }
     }catch(PDOException $e) {

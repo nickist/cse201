@@ -36,6 +36,7 @@ $connection = null;
 
         </head>
     <body>
+        <div class="wrapper">
             <div class="header">
                 <div class="container" onclick="toggleMenu(this)">
                     <div class="bar1"></div>
@@ -115,27 +116,22 @@ $connection = null;
                 }
             </script>
                 <div class="content">
-                    <?php          
-                        //echo "<table style='border: solid 1px black; margin-top: 2px;'>";
-                        //echo "<tr><th>bookName</th><th>Author</th><th>Library</th></tr>";   
+                    <?php            
                         $data = $statement->fetchAll();
                         foreach ($data as $dat) {
                             //image file path
                             $filepath = $dat['filePath'];
                             $style = "width:128px;height:150px";
-                            /*$format = sprintf("<div class='box'><h3>%s</h3></div>
+                            $format = sprintf("<div class='box'><h3>%s</h3></div>
                                                 <div class='box'><h5>%s</h5></div>
                                                 <div class='box'><h5>%s</h5></div>", $dat['bookName'], $dat['author'], $dat['libraryName']);
                             
-                            echo $format;*/
-                            echo "<div class='box'>{$data}</div>";
+                            echo $format;
                             echo "<div class='box'><img src=$filepath style=$style></div><br/><br/>";
                         }
-
-                        echo "</table>";
                     ?>
                 </div>
-    
+        </div>
     </body>
 </html>
 

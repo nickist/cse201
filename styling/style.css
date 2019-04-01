@@ -17,7 +17,9 @@
  }
 .wrapper {
   display: flex;
+  flex-wrap: wrap;
   flex-direction: column;
+  width: 100%;
 }
 .container1 {
   flex-grow: 2;
@@ -92,7 +94,6 @@ ul.sidenav {
 
 li {
   margin: 20px 0;
-
 }
 
 ul.sidenav li a {
@@ -122,66 +123,6 @@ div.content {
   height: 200px;
   flex-wrap: wrap;
 }
-
-@media screen and (max-width: 900px) {
-  ul.sidenav {
-    width: 100%;
-    height: auto;
-    position: relative;
-  }
-  .container1 {
-    flex-grow: 2;
-    margin: 0;
-    padding: 0;
-    width: 100%;
-    background: var(--navBackground);
-  }
-  .container {
-    width: 100%;
-    height: auto;
-    position: absolute;
-    flex: 1;
-  }
-
-  ul.sidenav li a {
-    float: left;
-    padding: 15px;
-  }
-  
-  div.content {
-    position: center;
-    background-color: #E5EF3F;
-    width: 100%;
-  }
-
-}
-
-@media screen and (max-width: 500px) {
-  ul.sidenav li a {
-    text-align: center;
-  }
-  .container1 {
-    flex-grow: 2;
-    margin: 0;
-    padding: 0;
-    width: 100%;
-    background: var(--navBackground);
-  }
-  .box {
-    flex:1;
-    padding: 20px;
-  }
-  .container {
-    width: 100%;
-  }
-  div.content {
-    position: center;
-    display: flex;
-    flex-wrap: wrap;
-    width: 100%;
-  }
-}
-
 
 .container {
   display: inline-block;
@@ -220,3 +161,59 @@ div.content {
   -webkit-transform: rotate(45deg) translate(-8px, -8px) ;
   transform: rotate(45deg) translate(-8px, -8px) ;
 }
+
+/*----------- begin media------------- */
+
+
+
+@media screen and (max-width: 900px) {
+  ul.sidenav {
+    width: 100%;
+    height: auto;
+    position: relative;
+  }
+  
+  ul.sidenav li a {
+    float: left;
+    padding: 15px;
+  }
+  
+  div.content {
+    position: center;
+    background-color: #E5EF3F;
+  }
+
+}
+
+@media screen and (max-width: 500px) {
+  ul.sidenav li a {
+    text-align: center;
+    width: 100%;
+  }
+  .wrapper {
+    width: 100%;
+    display: flex;
+  }
+  .container1 {
+    flex-grow: 2;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    background: var(--navBackground);
+  }
+  .box {
+    flex:1;
+    padding: 20px;
+  }
+  .container {
+    width: 100%;
+  }
+  div.content {
+    position: center;
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+  }
+}
+
+

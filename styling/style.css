@@ -1,18 +1,45 @@
-body {
+* {
   margin: 0;
 }
 
+@import url("https://fonts.googleapis.com/css?family=Raleway");
+
+:root {
+     --navBackground: #34495E;
+     --formColor: #34495E;
+ }
+
+ body html {
+     margin: 0;
+     background: #222;
+     font-family: 'Work Sans', sans-serif;
+     font-weight: 400;
+ }
+.wrapper {
+  display: flex;
+  flex-direction: column;
+}
+.container1 {
+  flex-grow: 2;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  background: var(--navBackground);
+}
+
 h1 {
-    background-color: blue;
     text-align: center;
     color: whitesmoke;
-    padding: 0px;
-    margin-top: 0;
-    margin-bottom: 2px;
 }
 
 .logout {
   display: none;
+}
+
+.header {
+  display: flex;
+  background: var(--navBackground);
+  width: 100%;
 }
 
 .logindata {
@@ -26,7 +53,7 @@ h1 {
   cursor: pointer;
 }
 input[name="login"]{
-  background-color: blue;
+  background-color: #34495E;
     border: none;
     color: white;
     padding: 15px 32px;
@@ -40,14 +67,7 @@ input[name="login"]{
 }
 .loginform input[type=submit] {
     border: 1px solid rgba(0, 0, 0, 0.3);
-    background: #64c8ef;
-    background: -moz-linear-gradient(top,  #64c8ef 0%, #00a2e2 100%); /* FF3.6+ */
-    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#64c8ef), color-stop(100%,#00a2e2)); /* Chrome,Safari4+ */
-    background: -webkit-linear-gradient(top,  #64c8ef 0%,#00a2e2 100%); /* Chrome10+,Safari5.1+ */
-    background: -o-linear-gradient(top,  #64c8ef 0%,#00a2e2 100%); /* Opera 11.10+ */
-    background: -ms-linear-gradient(top,  #64c8ef 0%,#00a2e2 100%); /* IE10+ */
-    background: linear-gradient(to bottom,  #64c8ef 0%,#00a2e2 100%); /* W3C */
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#64c8ef', endColorstr='#00a2e2',GradientType=0 ); /* IE6-9 */
+    background: var(--formColor);
     color: #fff;
     padding: 5px 15px;
     margin-right: 0;
@@ -60,7 +80,7 @@ ul.sidenav {
   margin: 0;
   padding: 0;
   width: 25%;
-  background-color: #7AB5F4;
+  background: var(--navBackground);
   position: fixed;
   height: 100%;
   overflow: auto;
@@ -68,7 +88,6 @@ ul.sidenav {
 
 #menu-box {
   display: none;
-  
 }
 
 li {
@@ -83,21 +102,25 @@ ul.sidenav li a {
 }
  
 ul.sidenav li a.menu {
-  background-color: blue;
+  background: var(--navBackground);
   color: whitesmoke;
 }
 
 ul.sidenav li a:hover:not(.active) {
-  background-color: #B9D9FB;
+  background: var(--navBackground);
   color: whitesmoke;
+}
+.box {
+  flex:1;
 }
 
 div.content {
+  display: flex;
   text-align: center;
   margin-left: 0;
   padding: 1px 16px;
-  height: 1000px;
-  background-color: #B9D9FB;
+  height: 200px;
+  flex-wrap: wrap;
 }
 
 @media screen and (max-width: 900px) {
@@ -106,11 +129,18 @@ div.content {
     height: auto;
     position: relative;
   }
-  
+  .container1 {
+    flex-grow: 2;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    background: var(--navBackground);
+  }
   .container {
     width: 100%;
     height: auto;
-    position: relative;
+    position: absolute;
+    flex: 1;
   }
 
   ul.sidenav li a {
@@ -120,7 +150,8 @@ div.content {
   
   div.content {
     position: center;
-    background-color: #B9D9FB;
+    background-color: #E5EF3F;
+    width: 100%;
   }
 
 }
@@ -128,11 +159,26 @@ div.content {
 @media screen and (max-width: 500px) {
   ul.sidenav li a {
     text-align: center;
-    float: none;
+  }
+  .container1 {
+    flex-grow: 2;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    background: var(--navBackground);
+  }
+  .box {
+    flex:1;
+    padding: 20px;
+  }
+  .container {
+    width: 100%;
   }
   div.content {
     position: center;
-    background-color: #B9D9FB;
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
   }
 }
 
@@ -143,16 +189,17 @@ div.content {
   list-style-type: none;
   margin: 0;
   padding: 0;
-  background-color: rgb(44, 142, 247);
+  background: var(--navBackground);
   position: sticky;
   height: 40px;
+  flex: 1;
   width: 100%;
 }
 
 .bar1, .bar2, .bar3 {
   width: 35px;
   height: 5px;
-  background-color: #333;
+  background-color: #FFF;
   margin: 6px 0;
   transition: 0.4s;
 }

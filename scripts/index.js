@@ -24,5 +24,4 @@ function toggleMenu(x) {
   }else {
     return true;
   }
-    
-  }
+}

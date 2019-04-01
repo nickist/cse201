@@ -3,39 +3,24 @@ require_once 'config.php';
 session_start();
 error_log(E_ALL);
 ini_set('display_errors', 1);
-class TableRows extends RecursiveIteratorIterator { 
-    function __construct($it) { 
-        parent::__construct($it, self::LEAVES_ONLY); 
+
+
+    try {
+        $connection = new PDO("mysql:host=$DB_HOST;dbname=$DB_NAME", $DB_USER, $DB_PASS);
+        $connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $statement = $connection->prepare("
+        SELECT books.bookName, books.author, libraries.libraryName, books.filePath 
+        FROM 
+            books
+                JOIN 
+            libraries ON books.libraryID = libraries.libraryID
+            ORDER BY books.bookName ;
+        "); 
+        $statement->execute();
+        $results = $statement->setFetchMode(PDO::FETCH_ASSOC);
+    }catch(PDOException $e) {
+        echo "Error: " . $e->getMessage();
     }
-
-    function current() {
-        return "<td style='width:150px;border:1px solid black;'>" . parent::current(). "</td>";
-    }
-
-    function beginChildren() { 
-        echo "<tr>"; 
-    } 
-
-    function endChildren() { 
-        echo "</tr>" . "\n";
-    } 
-}
-        try {
-            $connection = new PDO("mysql:host=$DB_HOST;dbname=$DB_NAME", $DB_USER, $DB_PASS);
-            $connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            $statement = $connection->prepare("
-            SELECT books.bookName, books.author, libraries.libraryName, books.filePath 
-            FROM 
-                books
-                    JOIN 
-                libraries ON books.libraryID = libraries.libraryID
-                ORDER BY books.bookName ;
-            "); 
-            $statement->execute();
-            $results = $statement->setFetchMode(PDO::FETCH_ASSOC);
-        }catch(PDOException $e) {
-            echo "Error: " . $e->getMessage();
-        }
 $connection = null;
 ?>
 
@@ -130,23 +115,22 @@ $connection = null;
             }
         </script>
             <div class="content">
-                <?php       
-                echo "<table style='border: solid 1px black; margin-top: 2px;'>";
-                echo "<tr><th>bookName</th><th>Author</th><th>Library</th></tr>";      
-                $data = $statement->fetchAll();
-                foreach ($data as $dat) {
-                    $filepath = $dat['filePath'];
-                    $style = "width:128px;height:128px";
-                    $format = sprintf("<tr>%s %s %s </tr><img src=%s style=%s>", 
-                                                $dat['bookName'], $dat['author'], 
-                                                $dat['libraryName'], $filepath,
-                                                $style);
-                    echo $format;
-                    //echo "<tr>{$dat[\'bookName\']} {$dat[\'author\']} {$dat[\'libraryName\']} <img src="{$filepath}"></tr>";
-                }
+                <?php          
+                    //echo "<table style='border: solid 1px black; margin-top: 2px;'>";
+                    //echo "<tr><th>bookName</th><th>Author</th><th>Library</th></tr>";   
+                    $data = $statement->fetchAll();
+                    foreach ($data as $dat) {
+                        //image file path
+                        $filepath = $dat['filePath'];
+                        $style = "width:128px;height:150px";
+                        $format = sprintf("<h3>%s</h3><h5>  %s  %s </h5>", $dat['bookName'], $dat['author'], $dat['libraryName']);
+                        
+                        echo $format;
+                        echo "<img src=$filepath style=$style>";
+                    }
 
-                echo "</table>";
-            ?>
+                    echo "</table>";
+                ?>
             </div>
 
     </body>

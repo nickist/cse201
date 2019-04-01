@@ -93,6 +93,7 @@ ul.sidenav li a:hover:not(.active) {
 }
 
 div.content {
+  text-align: center;
   margin-left: 0;
   padding: 1px 16px;
   height: 1000px;

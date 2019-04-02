@@ -5,33 +5,37 @@
 @import url("https://fonts.googleapis.com/css?family=Raleway");
 
 :root {
-     --navBackground: #34495E;
+      -webkit-appearance: none;
+     --navBackground: rgb(52, 73, 94);
      --formColor: #34495E;
  }
 
  body html {
      margin: 0;
-     background: #222;
-     font-family: 'Work Sans', sans-serif;
+     font-family: 'Raleway', sans-serif;
      font-weight: 400;
+     height: 1000px;
+
  }
+h3 {
+  color: white;
+}
+
 .wrapper {
-  display: flex;
-  flex-wrap: wrap;
-  flex-direction: column;
   width: 100%;
 }
 .container1 {
-  flex-grow: 2;
+  flex: 12;
   margin: 0;
   padding: 0;
-  width: 100%;
+  opacity: .7;
   background: var(--navBackground);
+  justify-content: flex-start;
 }
 
 h1 {
     text-align: center;
-    color: whitesmoke;
+    color: white;
 }
 
 .logout {
@@ -54,23 +58,27 @@ h1 {
   margin: 4px 2px;
   cursor: pointer;
 }
+img {
+  width:200;
+  height:225px
+}
 input[name="login"]{
-  background-color: #34495E;
-    border: none;
-    color: white;
-    padding: 15px 32px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    margin: 4px 2px;
-    cursor: pointer;
-    -webkit-appearance: none;
+  background-color: var(--navBackground);
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  -webkit-appearance: none;
 }
 .loginform input[type=submit] {
     border: 1px solid rgba(0, 0, 0, 0.3);
     background: var(--formColor);
-    color: #fff;
+    color: white;
     padding: 5px 15px;
     margin-right: 0;
     margin-top: 15px;
@@ -81,11 +89,10 @@ ul.sidenav {
   list-style-type: none;
   margin: 0;
   padding: 0;
-  width: 25%;
+  width: auto;
   background: var(--navBackground);
-  position: fixed;
-  height: 100%;
   overflow: auto;
+  opacity: .7;
 }
 
 #menu-box {
@@ -93,36 +100,46 @@ ul.sidenav {
 }
 
 li {
+  color: white;
   margin: 20px 0;
 }
 
 ul.sidenav li a {
-  color: #000;
   padding: 8px 16px;
   text-decoration: none;
 }
  
 ul.sidenav li a.menu {
   background: var(--navBackground);
-  color: whitesmoke;
+  position: sticky;
+  opacity: .7;
 }
 
 ul.sidenav li a:hover:not(.active) {
   background: var(--navBackground);
-  color: whitesmoke;
+  color: red;
 }
-.box {
+div.row {
+  display: flex;
+  flex-wrap: wrap;
+  border-bottom-style: solid;
+  border-color:var(--navBackground);
+  border-bottom-width: 1px;
+}
+div.box {
   flex:1;
+  margin: 3em;
+}
+div.box1 {
+  flex:2;
 }
 
 div.content {
-  display: flex;
   text-align: center;
   margin-left: 0;
   padding: 1px 16px;
   height: auto;
-  flex-wrap: wrap;
-  background-color: #E5EF3F;
+  background-color: rgb(90, 7, 7);
 }
 
 .container {
@@ -189,10 +206,9 @@ div.content {
   ul.sidenav li a {
     text-align: center;
   }
-
-  .box {
-    flex:1;
-    padding: 20px;
+  img {
+    width:128px;
+    height:150px
   }
  
   div.content {

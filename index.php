@@ -27,7 +27,7 @@ $connection = null;
 <!DOCTYPE html>
 <html lang="en">
         <head>
-        <title> ThatzTheBook</title>
+        <title> ThatzTheBook134.53.89.114</title>
         <meta charset="utf-8">
         <link href="/cse201/styling/style.css" rel="stylesheet">
         <link href="/cse201/styling/modalStyle.css" rel="stylesheet">
@@ -66,9 +66,9 @@ $connection = null;
                     <label for="psw"><b>Password</b></label>
                     <input type="password" placeholder="Enter Password" name="password" required>
 
-                    <button type="submit">AddUser</button>
+                    <button type="submit">Login</button>
 
-                    <div class="container" style="background-color:#f1f1f1">
+                    <div class="modalContainer" style="background-color:#f1f1f1">
                         <button type="button" onclick="document.getElementById('loginID').style.display = 'none'" class="cancelbtn">Cancel</button>
                     </div>
                 </form>
@@ -93,7 +93,7 @@ $connection = null;
 
                     <button type="submit">AddUser</button>
 
-                    <div class="container" style="background-color:#f1f1f1">
+                    <div class="modalContainer" style="background-color:#f1f1f1">
                     <button type="button" onclick="document.getElementById('addUserID').style.display = 'none'" class="cancelbtn">Cancel</button>
                     </div>
                 </form>
@@ -118,12 +118,12 @@ $connection = null;
                         foreach ($data as $dat) {
                             //image file path
                             $filepath = $dat['filePath'];
-                            $style = "width:128px;height:150px";
-                            $format = sprintf("<div class='box'><h3>%s  %s </h3>",$dat['author'], $dat['bookName']);
-                            
-                            echo $format;
-                            echo "<div class='box'><img src=$filepath style=$style></div>";
-                            echo "<h3>{$dat['libraryName']}</h3></div>";
+                            echo "<div class='row'>";
+                            echo "<div class='box'><h3>{$dat['author']}</h3></div>";
+                            echo "<div class='box'><h3>{$dat['bookName']}</h3></div>";
+                            echo "<div class='box'><h3>{$dat['libraryName']}</h3></div>";
+                            echo "<div class='box1'><img src=$filepath ></div>";
+                            echo "</div>";
                         }
                     ?>
                 </div>

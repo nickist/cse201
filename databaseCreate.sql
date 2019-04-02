@@ -50,6 +50,6 @@ CREATE TABLE comments (
         ON UPDATE CASCADE
 );
 INSERT INTO libraries(libraryName, libraryAddress)
-VALUES('King Library','151 S Campus Ave, Oxford, OH 45056');
+VALUES('Smith Library','441 S Locust St, Oxford, OH 45056');
 INSERT INTO books (bookName, bookAddition, author, filePath, libraryID)
-VALUES('Atlas Shrugged','1st','Ayn Rand ','http://img1.imagesbn.com/p/9780452286368_p0_v1_s260x420.jpg',1);
+VALUES('Head First Software Development: A Learner\'s Companion to Software Development','10th','Pilone, Dan','http://it-ebooks.info/images/ebooks/3/head_first_software_development.jpg',2);

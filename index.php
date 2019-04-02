@@ -82,7 +82,7 @@ $connection = null;
                     <label for="uname"><b>Username</b></label>
                     <input type="text" placeholder="Enter Username" name="username" required>
 
-                    <label for="name"><b>Username</b></label>
+                    <label for="name"><b>Name</b></label>
                     <input type="text" placeholder="Name" name="name" required>
 
                     <label for="psw"><b>Password</b></label>
@@ -90,9 +90,6 @@ $connection = null;
 
                     <label for="psw"><b>Repeat Password</b></label>
                     <input type="password" placeholder="Repeat Password" name="repassword" required>
-
-                    <label for="position"><b>Position</b></label>
-                    <input type="text" placeholder="Position" name="position" required>
 
                     <button type="submit">AddUser</button>
 

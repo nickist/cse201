@@ -16,9 +16,9 @@ if($_SERVER['REQUEST_METHOD'] === 'POST' /**&& username,  password correct */) {
             $statement = $connection->prepare("INSERT INTO users (username, passhash, position) 
             VALUES (:username, :passhash, :position)");
 
-            $username = $_POST['username'];
-            $password = $_POST['password'];
-            $position = $_POST['position'];
+            $username = htmlspecialchars($_POST['username']);
+            $password = htmlspecialchars($_POST['password']);
+            $position = "user";
             $options = [
                 'cost' => 12
             ];

@@ -59,8 +59,9 @@ h1 {
   cursor: pointer;
 }
 img {
-  width:200;
-  height:225px
+  width:150;
+  height:200px;
+
 }
 input[name="login"]{
   background-color: var(--navBackground);
@@ -102,6 +103,7 @@ ul.sidenav {
 li {
   color: white;
   margin: 20px 0;
+  cursor: pointer;
 }
 
 ul.sidenav li a {
@@ -128,7 +130,7 @@ div.row {
 }
 div.box {
   flex:1;
-  margin: 3em;
+  margin: 4em;
 }
 div.box1 {
   flex:2;

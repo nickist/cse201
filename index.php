@@ -27,7 +27,7 @@ $connection = null;
 <!DOCTYPE html>
 <html lang="en">
         <head>
-        <title> ThatzTheBook134.53.89.114</title>
+        <title> ThatzTheBook</title>
         <meta charset="utf-8">
         <link href="/cse201/styling/style.css" rel="stylesheet">
         <link href="/cse201/styling/modalStyle.css" rel="stylesheet">
@@ -50,7 +50,7 @@ $connection = null;
             <ul id="menu-box" class="sidenav">
                 <span class="login"><li><a onclick="document.getElementById('loginID').style.display='block'">Login</a></li></span>
                 <span class="logout" ><li><a href="/cse201/destroy.php">Log Out</a></li></span>
-                <li><a onclick="document.getElementById('addUserID').style.display='block'">AddUser</a></li>
+                <li><a onclick="document.getElementById('addUserID').style.display='block'">Register</a></li>
             </ul>
 
 

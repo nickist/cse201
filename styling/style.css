@@ -120,8 +120,9 @@ div.content {
   text-align: center;
   margin-left: 0;
   padding: 1px 16px;
-  height: 200px;
+  height: auto;
   flex-wrap: wrap;
+  background-color: #E5EF3F;
 }
 
 .container {
@@ -180,7 +181,6 @@ div.content {
   
   div.content {
     position: center;
-    background-color: #E5EF3F;
   }
 
 }
@@ -188,31 +188,15 @@ div.content {
 @media screen and (max-width: 500px) {
   ul.sidenav li a {
     text-align: center;
-    width: 100%;
   }
-  .wrapper {
-    width: 100%;
-    display: flex;
-  }
-  .container1 {
-    flex-grow: 2;
-    margin: 0;
-    padding: 0;
-    width: 100%;
-    background: var(--navBackground);
-  }
+
   .box {
     flex:1;
     padding: 20px;
   }
-  .container {
-    width: 100%;
-  }
+ 
   div.content {
     position: center;
-    display: flex;
-    flex-wrap: wrap;
-    width: 100%;
   }
 }
 

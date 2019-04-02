@@ -122,12 +122,11 @@ $connection = null;
                             //image file path
                             $filepath = $dat['filePath'];
                             $style = "width:128px;height:150px";
-                            $format = sprintf("<div class='box'><h3>%s</h3></div>
-                                                <div class='box'><h5>%s</h5></div>
-                                                <div class='box'><h5>%s</h5></div>", $dat['bookName'], $dat['author'], $dat['libraryName']);
+                            $format = sprintf("<div class='box'><h3>%s  %s </h3>",$dat['author'], $dat['bookName']);
                             
                             echo $format;
-                            echo "<div class='box'><img src=$filepath style=$style></div><br/><br/>";
+                            echo "<div class='box'><img src=$filepath style=$style></div>";
+                            echo "<h3>{$dat['libraryName']}</h3></div>";
                         }
                     ?>
                 </div>

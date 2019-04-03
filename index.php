@@ -1,11 +1,11 @@
 <?php
-require_once 'config.php';
 session_start();
 error_log(E_ALL);
 ini_set('display_errors', 1);
-include 'Database.php';
+include 'database.php';
+include 'User.php';
+include 'Book.php';
 
-$database = new Database();
 
     /*try {
         $connection = new PDO("mysql:host=$DB_HOST;dbname=$DB_NAME", $DB_USER, $DB_PASS);
@@ -115,28 +115,18 @@ $connection = null;*/
             </script>
                 <div class="content">
                     <?php   
-                    $query = "
-                    SELECT books.bookName, books.author, libraries.libraryName, books.filePath 
-                    FROM 
-                        books
-                            JOIN 
-                        libraries ON books.libraryID = libraries.libraryID
-                        ORDER BY books.bookName ;
-                    ";
-                    $database->query($query);
-                    $database->execute();        
-                        
-                       $data = $database->resultset();//$statement->fetchAll();
-                        foreach ($data as $dat) {
-                            //image file path
-                            $filepath = $dat['filePath'];
-                            echo "<div class='row'>";
-                            echo "<div class='box'><h3>{$dat['author']}</h3></div>";
-                            echo "<div class='box'><h3>{$dat['bookName']}</h3></div>";
-                            echo "<div class='box'><h3>{$dat['libraryName']}</h3></div>";
-                            echo "<div class='box1'><img src=$filepath ></div>";
-                            echo "</div>";
-                        }
+                    $book = new Book($pdo);
+                    $data = $book->defaultBooks();
+                    foreach ($data as $dat) {
+                        //image file path
+                        $filepath = $dat['filePath'];
+                        echo "<div class='row'>";
+                        echo "<div class='box'><h3>{$dat['author']}</h3></div>";
+                        echo "<div class='box'><h3>{$dat['bookName']}</h3></div>";
+                        echo "<div class='box'><h3>{$dat['libraryName']}</h3></div>";
+                        echo "<div class='box1'><img src=$filepath ></div>";
+                        echo "</div>";
+                    }
                     ?>
                 </div>
         </div>

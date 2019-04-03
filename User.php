@@ -25,15 +25,15 @@
                 'cost' => 12
             ];
             $passhash = password_hash($password, PASSWORD_BCRYPT, $options);
-            $this->con->query('INSERT INTO users (username, name, passhash, position) 
+            $statement = $this->con->prepare('INSERT INTO users (username, name, passhash, position) 
             VALUES (:username, :name, :passhash, :position)');
-            $this->con->bindParam(":username", $username);
-            $this->con->bindParam(":passhash", $passhash);
-            $this->con->bindParam(":name", $name);
-            $this->con->bindParam(":position", $position);
+            $statement->bindParam(":username", $username);
+            $statement->bindParam(":passhash", $passhash);
+            $statement->bindParam(":name", $name);
+            $statement->bindParam(":position", $position);
 
-            $this->con->execute();
-            $this->con->close();
+            $statement->execute();
+            $this->con = null;
 
         }
 

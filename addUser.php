@@ -1,5 +1,6 @@
 <?php
 include 'User.php';
+include 'database.php';
 error_log(E_ALL);
 ini_set('display_errors', 1);
 if($_SERVER['REQUEST_METHOD'] === 'POST' /**&& username,  password correct */) {
@@ -13,7 +14,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST' /**&& username,  password correct */) {
             session_destroy();
             header('location: /cse201/index.php');
         }else {
-            $user = new User();
+            $user = new User($pdo);
             $user->addUser($_POST['username'], $_POST['password'], $_POST['name'], 'user');
             echo "success";
             //header('location: /cse201/index.php');

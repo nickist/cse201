@@ -3,9 +3,11 @@ require_once 'config.php';
 session_start();
 error_log(E_ALL);
 ini_set('display_errors', 1);
+include 'Database.php';
 
+$database = new Database();
 
-    try {
+    /*try {
         $connection = new PDO("mysql:host=$DB_HOST;dbname=$DB_NAME", $DB_USER, $DB_PASS);
         $connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         $statement = $connection->prepare("
@@ -21,7 +23,7 @@ ini_set('display_errors', 1);
     }catch(PDOException $e) {
         echo "Error: " . $e->getMessage();
     }
-$connection = null;
+$connection = null;*/
 ?>
 
 <!DOCTYPE html>
@@ -30,7 +32,6 @@ $connection = null;
         <title> ThatzTheBook</title>
         <meta charset="utf-8">
         <link href="/cse201/styling/style.css" rel="stylesheet">
-        <link href="/cse201/styling/modalStyle.css" rel="stylesheet">
         <script src="/cse201/scripts/index.js"></script>
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -38,12 +39,12 @@ $connection = null;
     <body>
         <div class="wrapper">
             <div class="header">
-                <div class="container" onclick="toggleMenu(this)">
+                <div class="barContainer" onclick="toggleMenu(this)">
                     <div class="bar1"></div>
                     <div class="bar2"></div>
                     <div class="bar3"></div>
                 </div>
-                <div class="container1">
+                <div class="headerContainer">
                     <h1>ThatzTheBook</h1>
                 </div>
             </div>
@@ -113,8 +114,19 @@ $connection = null;
                 }
             </script>
                 <div class="content">
-                    <?php            
-                        $data = $statement->fetchAll();
+                    <?php   
+                    $query = "
+                    SELECT books.bookName, books.author, libraries.libraryName, books.filePath 
+                    FROM 
+                        books
+                            JOIN 
+                        libraries ON books.libraryID = libraries.libraryID
+                        ORDER BY books.bookName ;
+                    ";
+                    $database->query($query);
+                    $database->execute();        
+                        
+                       $data = $database->resultset();//$statement->fetchAll();
                         foreach ($data as $dat) {
                             //image file path
                             $filepath = $dat['filePath'];

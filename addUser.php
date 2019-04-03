@@ -1,38 +1,22 @@
 <?php
-require_once 'config.php';
+include 'User.php';
 error_log(E_ALL);
 ini_set('display_errors', 1);
 if($_SERVER['REQUEST_METHOD'] === 'POST' /**&& username,  password correct */) {
     session_start();
     
     try {
-        $connection = new PDO("mysql:host=$DB_HOST;dbname=$DB_NAME", $DB_USER, $DB_PASS);
-        $connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
         if(!isset($_POST['username'], $_POST['password'], $_POST['repassword'])){
             die('Username and/or password does not exist!');
-            header('location: login.html');
+            session_unset();
+            session_destroy();
+            header('location: /cse201/index.php');
         }else {
-
-            $statement = $connection->prepare("INSERT INTO users (username, passhash, position) 
-            VALUES (:username, :passhash, :position)");
-
-            $username = htmlspecialchars($_POST['username']);
-            $password = htmlspecialchars($_POST['password']);
-            $position = "user";
-            $options = [
-                'cost' => 12
-            ];
-            $passhash = password_hash($password, PASSWORD_BCRYPT, $options);
-            $statement->bindparam(":username", $username);
-            $statement->bindparam(":passhash", $passhash);
-            $statement->bindparam(":position", $position);
-
-            $statement->execute();
-
-            echo "new Records created";
-
-
-            header('location: index.php');
+            $user = new User();
+            $user->addUser($_POST['username'], $_POST['password'], $_POST['name'], 'user');
+            echo "success";
+            //header('location: /cse201/index.php');
         }
     }catch(PDOException $e) {
         echo "Error: " . $e->getMessage();

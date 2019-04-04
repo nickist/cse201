@@ -10,8 +10,19 @@
             $this->con = $pdo;
         }
 
-        public function validateUser($username, $passhash) {
-            
+        public function validateUser($username, $password) {
+
+            $statement = $this->con->prepare("SELECT * FROM users WHERE username=:username"); 
+            $statement->bindParam(':username', $username);
+            $statement->execute();
+            $results = $statement->fetch();
+            $verify = $results['passhash'];
+            if(password_verify($password, $verify)) {
+                return true;
+            } else {
+                return false;
+            }
+            $this->con = null;
         }
 
         public function addUser($username, $password, $name, $position) {

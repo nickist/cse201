@@ -10,7 +10,7 @@
 
         public function defaultBooks(){
             $query = "
-                    SELECT books.bookName, books.author, libraries.libraryName, books.filePath 
+                    SELECT  books.author, books.bookName, libraries.libraryName, books.filePath 
                     FROM 
                         books
                             JOIN 

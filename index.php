@@ -3,27 +3,10 @@ session_start();
 error_log(E_ALL);
 ini_set('display_errors', 1);
 include 'database.php';
-include 'User.php';
-include 'Book.php';
+include 'classes/User.php';
+include 'classes/Book.php';
 
 
-    /*try {
-        $connection = new PDO("mysql:host=$DB_HOST;dbname=$DB_NAME", $DB_USER, $DB_PASS);
-        $connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $statement = $connection->prepare("
-        SELECT books.bookName, books.author, libraries.libraryName, books.filePath 
-        FROM 
-            books
-                JOIN 
-            libraries ON books.libraryID = libraries.libraryID
-            ORDER BY books.bookName ;
-        "); 
-        $statement->execute();
-        $results = $statement->setFetchMode(PDO::FETCH_ASSOC);
-    }catch(PDOException $e) {
-        echo "Error: " . $e->getMessage();
-    }
-$connection = null;*/
 ?>
 
 <!DOCTYPE html>

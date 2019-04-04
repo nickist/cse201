@@ -21,7 +21,6 @@ if($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $_SESSION['user'] = $results['username'];
             }else{
                 echo "fail";
-                $_SESSION
             }
         }
     }catch(PDOException $e) {

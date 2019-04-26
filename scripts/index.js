@@ -216,12 +216,18 @@ $(document).ready(function() {
       })
     } else if (search.slice(-1) ==="%"){
       $.getJSON('book/read.php?search='+search+'&filter='+filt, function(results) {
-       fillSearchResult(results, filt);
+        if ("Message" in results) {
+        } else {
+          fillSearchResult(results, filt);
+        }
       })
     } else {
-     search = search+"%";
-      $.getJSON('book/read.php?search='+search+'&filter='+filt, function(results) {
-      fillSearchResult(results, filt);
+        search = search+"%";
+        $.getJSON('book/read.php?search='+search+'&filter='+filt, function(results) {
+          if ("Message" in results) {
+        } else {
+          fillSearchResult(results, filt);
+        }
       })
     }
   })

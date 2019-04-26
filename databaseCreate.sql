@@ -1,6 +1,6 @@
-﻿DROP DATABASE [IF EXISTS] thatztheappdb;
+﻿DROP DATABASE IF EXISTS thatztheappdb;
 
-CREATE DATABASE thatztheappdb;
+CREATE DATABASE IF NOT EXISTS thatztheappdb;
 
 USE thatztheappdb;
 

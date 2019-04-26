@@ -1,14 +1,77 @@
-* {
-  margin: 0;
-}
+@import url('https://fonts.googleapis.com/css?family=Raleway');
 
-@import url("https://fonts.googleapis.com/css?family=Raleway");
+
+
 
 :root {
       -webkit-appearance: none;
-     --navBackground: rgb(52, 73, 94);
-     --formColor: #34495E;
+     --navBackground: rgb(57, 66, 80);
+     --formColor: rgb(55, 57, 59);
+     --modalColor: #34495E;
+     --contentColor: rgb(41, 44, 53);
  }
+
+.fa-trash {
+  color: black;
+  font-size:25px;
+}
+
+#trashButton {
+  width: 150px;
+  height: 50px;}
+
+.approve {
+  background: green;
+  color: white;
+  cursor: pointer;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+tr:nth-of-type(odd){
+  background: #eee;
+}
+
+th {
+  font-family: 'Raleway', sans-serif;
+  background: #333;
+  color: white;
+  font-weight: bold;
+}
+
+
+
+
+.search {
+  font-family: 'Raleway', sans-serif;
+  background: var(--contentColor);
+  width: 100%;
+  text-align: center;
+}
+
+.suggestions {
+  display: inline-block;
+
+}
+
+div.search input {
+  width: 25%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+  display: inline-block;
+}
+
+td, th {
+  font-family: 'Raleway', sans-serif;
+  padding: 6px;
+  border: 1px solid #ccc;
+  text-align: left;
+}
 
  body html {
      margin: 0;
@@ -19,33 +82,92 @@
  }
 h3 {
   color: white;
+  font-family: 'Raleway', sans-serif;
+}
+
+.notification {
+  display: none;
+  width: 200px;
+  height: 50px;
+  -webkit-animation: fadein 1s; /* Safari, Chrome and Opera > 12.1 */
+       -moz-animation: fadein 1s; /* Firefox < 16 */
+        -ms-animation: fadein 1s; /* Internet Explorer */
+         -o-animation: fadein 1s; /* Opera < 12.1 */
+            animation: fadein 1s;
+  border-radius: 25px;
+  opacity: .7;
+  text-align: center;
+  position: absolute;
+  background: red;
+  color: black;
+  font: bold;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  z-index: 99;
+}
+
+@keyframes fadein {
+  from { opacity: 0; }
+  to   { opacity: .7; }
+}
+
+/* Firefox < 16 */
+@-moz-keyframes fadein {
+  from { opacity: 0; }
+  to   { opacity: .7; }
+}
+
+/* Safari, Chrome and Opera > 12.1 */
+@-webkit-keyframes fadein {
+  from { opacity: 0; }
+  to   { opacity: .7; }
+}
+
+/* Internet Explorer */
+@-ms-keyframes fadein {
+  from { opacity: 0; }
+  to   { opacity: .7; }
 }
 
 .wrapper {
   width: 100%;
 }
-.headerContainer {
-  flex: 12;
-  margin: 0;
-  padding: 0;
-  opacity: .7;
-  background: var(--navBackground);
-  justify-content: flex-start;
+
+
+#user {
+  justify-content: flex-end;
 }
 
 h1 {
+    font-family: 'Raleway', sans-serif;
     text-align: center;
-    color: white;
+    color: rgb(255,255,255);
 }
 
-.logout {
-  display: none;
+select {
+  font-family: 'Raleway', sans-serif;
 }
 
 .header {
-  display: flex;
+  display:flex;
+  justify-content: space-between;
   background: var(--navBackground);
   width: 100%;
+  height: auto;
+  text-align: center;
+  color: white;
+}
+
+
+
+.libraryList {
+  z-index: 1;
+}
+
+.usrin {
+  display: none;
 }
 
 .logindata {
@@ -58,13 +180,26 @@ h1 {
   margin: 4px 2px;
   cursor: pointer;
 }
-img {
-  width:150;
+.contentimg {
+  flex: 1;
+  width:150px;
   height:200px;
 
 }
+
+.admin {
+  display: none;
+}
+
+
+.bookinfoimg {
+  width:150px;
+  height:200px;
+}
+
 input[name="login"]{
   background-color: var(--navBackground);
+  font-family: 'Raleway', sans-serif;
   border: none;
   color: white;
   padding: 15px 32px;
@@ -77,6 +212,7 @@ input[name="login"]{
   -webkit-appearance: none;
 }
 .loginform input[type=submit] {
+    font-family: 'Raleway', sans-serif;
     border: 1px solid rgba(0, 0, 0, 0.3);
     background: var(--formColor);
     color: white;
@@ -86,7 +222,15 @@ input[name="login"]{
     border-radius: 3px;
     text-shadow: 1px 1px opx rgb(0, 0, 0, 0.3);
   }
+
+.profileImage {
+  font-size: 40px;
+  background: none;
+  cursor: pointer;
+}
+
 ul.sidenav {
+  font-family: 'Raleway', sans-serif;
   list-style-type: none;
   margin: 0;
   padding: 0;
@@ -96,13 +240,26 @@ ul.sidenav {
   opacity: .7;
 }
 
+a {
+  color: white !important;
+}
+
+.errorMessage {
+  color: red;
+  background: grey;
+  float: Center;
+}
+
 #menu-box {
   display: none;
+
 }
 
 li {
+  font-family: 'Raleway', sans-serif;
   color: white;
   margin: 20px 0;
+  list-style: none;
   cursor: pointer;
 }
 
@@ -121,37 +278,21 @@ ul.sidenav li a:hover:not(.active) {
   background: var(--navBackground);
   color: red;
 }
-div.row {
+[class*='Contentrow'] {
+  flex: 1;
   display: flex;
+
+}
+[class*='box'] {
+  flex: 1;
   flex-wrap: wrap;
-  border-bottom-style: solid;
-  border-color:var(--navBackground);
-  border-bottom-width: 1px;
+  color:white;
 }
-div.box {
-  flex:1;
-  margin: 4em;
-}
-div.box1 {
-  flex:2;
-}
-
-:root {
-  --modalColor: #34495E;
-}
-
-body {
-  font-family: Arial, Helvetica, sans-serif;
-}
-
-.box {
-  border-color: #000;
-  border: 3px;
-}
-
 
 /* Full-width input fields */
-input[type=text], input[type=password] {
+
+div.modal [type=text], div.modal input[type=password] {
+  font-family: 'Raleway', sans-serif;
   width: 100%;
   padding: 12px 20px;
   margin: 8px 0;
@@ -160,29 +301,51 @@ input[type=text], input[type=password] {
   box-sizing: border-box;
 }
 
+.uploadImg {
+  width: 75px; 
+  height: 100px;
+}
+
+#renewBook {
+  width: 150px;
+  height: 50px;
+  color:white;
+}
 /* Set a style for all buttons */
 button {
+  width: 150px;
+  height: 50px;
+  font-family: 'Raleway', sans-serif;
   background-color: var(--modalColor);
-  color: white;
-  padding: 14px 20px;
-  margin: 8px 0;
+  color: white !important;
+  padding: 10px 18px;
   border: none;
   cursor: pointer;
-  width: 100%;
 }
 
 button:hover {
   opacity: 0.8;
 }
 
+#checkOutBook {
+  width: 150px;
+  height: 50px;
+  color: white;
+}
+
 /* Extra styles for the cancel button */
 .cancelbtn {
-  width: auto;
+  width: 100px;
+  height: 50px;
+  font-family: 'Raleway', sans-serif;
+  color: white;
   padding: 10px 18px;
   background-color: #f44336;
 }
 .modalContainer {
   padding: 16px;
+  display: flex;
+  justify-content: space-between;
 }
 
 span.psw {
@@ -192,6 +355,7 @@ span.psw {
 
 /* The Modal (background) */
 .modal {
+  font-family: 'Raleway', sans-serif;
   display: none; /* Hidden by default */
   position: fixed; /* Stay in place */
   z-index: 1; /* Sit on top */
@@ -213,9 +377,14 @@ span.psw {
   width: 80%; /* Could be more or less, depending on screen size */
 }
 
+#headline {
+  flex:2;
+}
+
+
 /* The Close Button (x) */
 .close {
-  position: absolute;
+  position: fixed;
   right: 25px;
   top: 0;
   color: #000;
@@ -246,22 +415,17 @@ span.psw {
 }
 
 /* Change styles for span and cancel button on extra small screens */
-@media screen and (max-width: 300px) {
-  span.psw {
-     display: block;
-     float: none;
-  }
-  .cancelbtn {
-     width: 100%;
-  }
-}
 
 div.content {
+  background: url('/cse201/img/book_shelves.jpg') no-repeat center;
+  background-size: cover;
   text-align: center;
+  flex-wrap: wrap;
+  flex-direction: column;
+  display: flex;
   margin-left: 0;
   padding: 1px 16px;
   height: auto;
-  background-color: rgb(90, 7, 7);
 }
 
 .barContainer {
@@ -273,8 +437,7 @@ div.content {
   background: var(--navBackground);
   position: sticky;
   height: 40px;
-  flex: 1;
-  width: 100%;
+  width: auto;
 }
 
 .bar1, .bar2, .bar3 {
@@ -324,13 +487,71 @@ div.content {
 
 }
 
+@media screen and (max-width: 760px) {
+  table, thead, tbody, th, td, tr {
+    display: block;
+  }
+  th {
+    display: none;
+  }
+
+  tr{ border: 1px solid #ccc;}
+
+  td {
+    border: none;
+    border-bottom: 1px solid #eee;
+    position: relative;
+    padding-left: 50%;
+  }
+
+  td:before {
+    position: absolute;
+    background: #333;
+    color: #FFF;
+    top: 6px;
+    left: 6px;
+    width: 45%;
+    white-space: wrap;
+  }
+  td:nth-of-type(1):before { content:"Book Name"; }
+  td:nth-of-type(2):before { content:"Author"; }
+  td:nth-of-type(3):before { content:"Book Cover"; }
+  td:nth-of-type(4):before { content:"Addition"; }
+  td:nth-of-type(5):before { content:"Library"; }
+  td:nth-of-type(6):before { content:"Library Address"; }
+  td:nth-of-type(7):before { content:"Checked Out By"; }
+
+}
+
 @media screen and (max-width: 500px) {
   ul.sidenav li a {
     text-align: center;
   }
-  img {
-    width:128px;
-    height:150px
+  .contentimg {
+    width:100px;
+    height:125px
+  }
+ 
+  .bookinfoimg {
+    width:100px;
+    height:125px
+  }
+
+  div.content {
+    position: center;
+  }
+}
+
+@media screen and (max-width: 300px) {
+  span.psw {
+    display: block;
+    float: none;
+ }
+ .cancelbtn {
+    width: 100%;
+ }
+  ul.sidenav li a {
+    text-align: center;
   }
  
   div.content {
@@ -339,3 +560,15 @@ div.content {
 }
 
 
+#searchButton {
+  background: none;
+  color:white;
+}
+
+.remove {
+  background: red;
+}
+
+.trashButton {
+  background: none;
+}

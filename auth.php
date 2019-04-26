@@ -1,7 +1,9 @@
 <?php
     session_start();
-    if(empty($_SESSION['user'])){
-        header('location: /cse201/login.html');
+    if(empty($_SESSION['username']) && $_SESSION['position'] != 'admin'){
+        
         exit;
+    } else if ($_SESSION['position'] == 'user') {
+        
     }
 ?>

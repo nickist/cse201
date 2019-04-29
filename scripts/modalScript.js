@@ -25,13 +25,13 @@ function showBookInfo(id,i) {
             "</tr>");
             username = (value.username === null) ? "none" : value.username;
              $(".bookinfoTable").append("<tr row_id="+value.bookID+">"+
-                '<td><div class="row_data" col_name="bookName" edit_type="click">'+value.bookName+'</div></td>'+
-                '<td><div class="row_data" col_name="author" edit_type="click">'+value.author+'</div></td>'+
-                '<td><div class="row_data" col_name="filePath" edit_type="click"><img class="bookinfoimg" src='+value.filePath+'></div></td>'+
-                '<td><div class="row_data" col_name="bookAddition" edit_type="click">'+value.bookAddition+'</div></td>'+
-                '<td><div class="row_data" col_name="libraryName" edit_type="click">'+value.libraryName+'</div></td>'+
-                '<td><div class="row_data" col_name="libraryAddress" edit_type="click">'+value.libraryAddress+'</div></td>'+
-                '<td><div class="row_data" col_name="username" edit_type="click">'+username+'</div></td>'+
+                '<td><span class="row_data" col_name="bookName" edit_type="click">'+value.bookName+'</span></td>'+
+                '<td><span class="row_data" col_name="author" edit_type="click">'+value.author+'</span></td>'+
+                '<td><span class="row_data" col_name="filePath" edit_type="click"><img class="bookinfoimg" src='+value.filePath+'></span></td>'+
+                '<td><span class="row_data" col_name="bookAddition" edit_type="click">'+value.bookAddition+'</span></td>'+
+                '<td><span class="row_data" col_name="libraryName" edit_type="click">'+value.libraryName+'</span></td>'+
+                '<td><span class="row_data" col_name="libraryAddress" edit_type="click">'+value.libraryAddress+'</span></td>'+
+                '<td><span class="row_data" col_name="username" edit_type="click">'+username+'</span></td>'+
                "</tr>");
                var name = "";
                if(value.userID !== null ) {

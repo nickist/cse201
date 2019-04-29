@@ -152,6 +152,8 @@ function fillSearchResult(results, filt) {
 }
 
 function notify(results) {
+
+$(".notification").empty();
   $(".notification").append("<h3>"+results["Message"]+"</h3>");
     $(".notification").show();
   setTimeout(function() {

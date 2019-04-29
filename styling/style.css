@@ -501,12 +501,14 @@ div.content {
     border: none;
     border-bottom: 1px solid #eee;
     position: relative;
+    text-align: end;
     padding-left: 50%;
   }
 
   td:before {
     position: absolute;
     background: #333;
+    text-align: start;
     color: #FFF;
     top: 6px;
     left: 6px;

@@ -128,27 +128,29 @@ function deleteBook (bookID) {
 }
 
 function fillSearchResult(results, filt) {
-  $('#searchResults').empty();
+  $('.autocomplete-items').empty();
+  $(".autocomplete").append("<div class='autocomplete-items' id=autocomplete-items>");
     $.each(results, function(key, value) {
       switch (filt) {
         case "bookName":
-          $('#searchResults').append("<option id='"+value.bookID+"' value='"+value.bookName+"'>"+value.author+"</option>");
+          $('.autocomplete-items').append("<div><strong>"+value.bookName+"</strong></div>");
           break;
         case "author":
-          $('#searchResults').append("<option id='"+value.bookID+"' value='"+value.author+"'>"+value.bookName+"</option>");
+          $('.autocomplete-items').append("<div><strong>"+value.author+"</strong></div>");
           break;
         case "bookAddition":
-          $('#searchResults').append("<option id='"+value.bookID+"' value='"+value.bookAddition+"'>"+value.bookName+"</option>");
+          $('.autocomplete-items').append("<div><strong>"+value.bookAddition+"</strong></div>");
           break;
         case "libraryName":
-          $('#searchResults').append("<option id='"+value.bookID+"' value='"+value.libraryName+"'>"+value.bookName+"</option>");
+          $('.autocomplete-items').append("<div><strong>"+value.libraryName+"</strong></div>");
           break;
         default:
-          $('#searchResults').append("<option id='"+value.bookID+"' value='"+value.bookName+"'>"+value.author+"</option>");
+          $('.autocomplete-items').append("<div><strong>"+value.bookName+"</strong></div>");
           break;
       }
 
   });
+  $(".autocomplete").append("</div>");
 }
 
 function notify(results) {
@@ -207,14 +209,12 @@ $(document).ready(function() {
   var searchBox = document.getElementById("searchText");
   var filter = document.getElementById("filter");
   //on key up search
-  $('#searchText').keyup(function () {
+  $('#searchText').on("keyup", function () {
     var search = searchBox.value;
     var filt = filter.options[filter.selectedIndex].value;
     if (search == "") {
       $.getJSON('book/read.php?books=1', function(results) {
-        $("#result").empty();
-        $("#result").hide();
-        mainPage(results);
+        $('.autocomplete-items').empty();
       })
     } else if (search.slice(-1) ==="%"){
       $.getJSON('book/read.php?search='+search+'&filter='+filt, function(results) {
@@ -243,7 +243,6 @@ $(document).ready(function() {
     })
     })
     $.getJSON('user/session.php?updateFees=1', function(results) {
-      console.log("worked");
     })
 })
 
@@ -381,33 +380,6 @@ $(function () {
   });
 });
 
-// $(function () {
-
-//   $('#addUserForm').on('submit', function(e) {
-
-//     e.preventDefault();
-
-//     $.ajax({
-//       type: 'POST',
-//       url: 'user/addUser.php',
-//       data: $('#addUserForm').serialize(),
-//       success: function ( data ) {
-//         console.log(data);
-//         if(data != 'undefined'){
-//           var json = JSON.parse(data);
-//           if (json == false) {
-//             $(".errorMessage").append("<p>Username already Taken</p>");
-//           }
-//         }
-//           location.reload();
-//       },
-//       error: function(jqXhr, textStatus, errorThrown) {
-//         console.log( errorThrown );
-//       }
-//     });
-//   });
-// });
-
 
 
 function checkPassword(form) {
@@ -421,6 +393,8 @@ function checkPassword(form) {
     return true;
   }
 }
+
+
 
 
 

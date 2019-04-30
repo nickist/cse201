@@ -39,10 +39,11 @@
             </ul>
 <div id="searchBar" class="search">
     <form id="searchForm">
-        <input type='text' placeholder="Search" name='search' id="searchText" list="searchResults" autocomplete="off">
-        <button id="searchButton" class="fas fa-search" type="submit"></button>
+        <div class="autocomplete">
+            <input type='text' placeholder="Search" name='search' id="searchText" autocomplete="off">
+        </div>
         <select id='filter' onchange="selectChange()"></select>
-        <datalist id="searchResults"></datalist>
+        <button id="searchButton" class="fas fa-search" type="submit"></button>
     </form>
 </div>
 

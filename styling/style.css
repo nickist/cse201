@@ -124,7 +124,6 @@ select {
 }
 
 .header {
-
   display:flex;
   justify-content: space-between;
   background: var(--navBackground);
@@ -133,8 +132,6 @@ select {
   text-align: center;
   color: white;
 }
-
-
 
 .libraryList {
   z-index: 1;
@@ -465,41 +462,18 @@ div.content {
 }
 
 @media screen and (max-width: 760px) {
-  table, thead, tbody, th, td, tr {
-    display: block;
-  }
-  th {
-    display: none;
-  }
 
   tr{ border: 1px solid #ccc;}
 
-  td {
-    border: none;
-    border-bottom: 1px solid #eee;
-    position: relative;
-    text-align: end;
-    padding-left: 50%;
+  .contentimg {
+    width:125px;
+    height:150px
   }
 
-  td:before {
-    position: absolute;
-    background: #333;
-    text-align: start;
-    color: #FFF;
-    top: 6px;
-    left: 6px;
-    width: 45%;
-    white-space: wrap;
+  .bookinfoimg {
+    width:125px;
+    height:150px
   }
-  td:nth-of-type(1):before { content:"Book Name"; }
-  td:nth-of-type(2):before { content:"Author"; }
-  td:nth-of-type(3):before { content:"Book Cover"; }
-  td:nth-of-type(4):before { content:"Addition"; }
-  td:nth-of-type(5):before { content:"Library"; }
-  td:nth-of-type(6):before { content:"Library Address"; }
-  td:nth-of-type(7):before { content:"Checked Out By"; }
-
 }
 
 @media screen and (max-width: 500px) {
@@ -510,11 +484,6 @@ div.content {
   .contentimg {
     width:100px;
     height:125px
-  }
-  
- 
-  body html {
-    width: 100%;
   }
 
   .bookinfoimg {

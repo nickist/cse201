@@ -11,51 +11,97 @@ function showBookInfo(id,i) {
     $(".trashButton").remove();
     $("#checkOutBook").remove();
     $("#renewBook").remove();
-
     $.getJSON("book/read.php?bookID="+id, function(results) {
-         $.each(results, function(key, value) {
-            $('.bookinfoTable').append("<tr id="+value.bookID+">"+
-            "<th id='bookName'>Book Name</th>"+
-            "<th id='author'>Author</th>"+
-            "<th id='filePath'>Book Cover</th>"+
-            "<th id='bookAddition'>Addition</th>"+
-            "<th id='libraryName'>Library</th>"+
-            "<th id='libraryAddress'>Library Address</th>"+
-            "<th id='username'>Checked Out By</th>"+         
-            "</tr>");
-            username = (value.username === null) ? "none" : value.username;
-             $(".bookinfoTable").append("<tr row_id="+value.bookID+">"+
-                '<td><span class="row_data" col_name="bookName" edit_type="click">'+value.bookName+'</span></td>'+
-                '<td><span class="row_data" col_name="author" edit_type="click">'+value.author+'</span></td>'+
-                '<td><span class="row_data" col_name="filePath" edit_type="click"><img class="bookinfoimg" src='+value.filePath+'></span></td>'+
-                '<td><span class="row_data" col_name="bookAddition" edit_type="click">'+value.bookAddition+'</span></td>'+
-                '<td><span class="row_data" col_name="libraryName" edit_type="click">'+value.libraryName+'</span></td>'+
-                '<td><span class="row_data" col_name="libraryAddress" edit_type="click">'+value.libraryAddress+'</span></td>'+
-                '<td><span class="row_data" col_name="username" edit_type="click">'+username+'</span></td>'+
-               "</tr>");
-               var name = "";
-               if(value.userID !== null ) {
-                   name = "Renew Book";
-               } else {
-                   name = "Check Out Book";
-               }
-               $("#bookinfoModal").append("<button id='checkOutBook' class='checkOutBook usrin' type='button'>"+name+"</button>");
-               $("#bookinfoModal").append("<button id='trashButton' class='trashButton admin' type='button' onclick='deleteBook("+value.bookID+")'></button>");
-               $("#trashButton").append("<i class='glyphicon glyphicon-trash'></i>");
-               
-            
-         }); 
-         if (getCookie('userID') != "") {
-            document.getElementById("checkOutBook").style.display="block";
-        } 
-        if(getCookie("position") != "admin") {
-            document.getElementById("trashButton").style.display='none';
+        if($(window).width() > 760) {
+            tableHeaderTop(results);
         } else {
-            document.getElementById("trashButton").style.display="block";
+            tableHeaderLeft(results);
         }
-         document.getElementById(i).style.display='block';
-       });
+    });
+    document.getElementById(i).style.display='block';  
+
 }
+
+
+function tableHeaderLeft(results) {
+    $.each(results, function(key, value) {
+        username = (value.username === null) ? "none" : value.username;
+        var name = "";
+        if(value.userID !== null ) {
+            name = "Renew Book";
+        } else {
+            name = "Check Out Book";
+        }
+        $('.bookinfoTable').append(
+        "<tr><th id='bookName'>Book Name</th>"+ '<td><span class="row_data" col_name="bookName" edit_type="click">'+value.bookName+'</span></td></tr>'+
+        "<tr><th id='author'>Author</th>" + '<td><span class="row_data" col_name="author" edit_type="click">'+value.author+'</span></td></tr>'+
+        "<tr><th id='filePath'>Book Cover</th>" + '<td><span class="row_data" col_name="filePath" edit_type="click"><img class="bookinfoimg" src='+value.filePath+'></span></td></tr>'+
+        "<tr><th id='bookAddition'>Addition</th>" + '<td><span class="row_data" col_name="bookAddition" edit_type="click">'+value.bookAddition+'</span></td></tr>'+
+        "<tr><th id='libraryName'>Library</th>" + '<td><span class="row_data" col_name="libraryName" edit_type="click">'+value.libraryName+'</span></td></tr>'+
+        "<tr><th id='libraryAddress'>Library Address</th>" + '<td><span class="row_data" col_name="libraryAddress" edit_type="click">'+value.libraryAddress+'</span></td></tr>'+
+        "<tr><th id='username'>Checked Out By</th>" + '<td><span class="row_data" col_name="username" edit_type="click">'+username+'</span></td></tr>');
+       
+           $("#bookinfoModal").append("<button id='checkOutBook' class='checkOutBook usrin' type='button'>"+name+"</button>");
+           $("#bookinfoModal").append("<button id='trashButton' class='trashButton admin' type='button' onclick='deleteBook("+value.bookID+")'></button>");
+           $("#trashButton").append("<i class='glyphicon glyphicon-trash'></i>");
+           
+        
+     });
+     if (getCookie('userID') != "") {
+        document.getElementById("checkOutBook").style.display="block";
+    } 
+    if(getCookie("position") != "admin") {
+        document.getElementById("trashButton").style.display='none';
+    } else {
+        document.getElementById("trashButton").style.display="block";
+    }
+}
+
+function tableHeaderTop(results) {
+    $.each(results, function(key, value) {
+        $('.bookinfoTable').append("<tr id="+value.bookID+">"+
+        "<th id='bookName'>Book Name</th>"+
+        "<th id='author'>Author</th>"+
+        "<th id='filePath'>Book Cover</th>"+
+        "<th id='bookAddition'>Addition</th>"+
+        "<th id='libraryName'>Library</th>"+
+        "<th id='libraryAddress'>Library Address</th>"+
+        "<th id='username'>Checked Out By</th>"+         
+        "</tr>");
+        username = (value.username === null) ? "none" : value.username;
+         $(".bookinfoTable").append("<tr row_id="+value.bookID+">"+
+            '<td><span class="row_data" col_name="bookName" edit_type="click">'+value.bookName+'</span></td>'+
+            '<td><span class="row_data" col_name="author" edit_type="click">'+value.author+'</span></td>'+
+            '<td><span class="row_data" col_name="filePath" edit_type="click"><img class="bookinfoimg" src='+value.filePath+'></span></td>'+
+            '<td><span class="row_data" col_name="bookAddition" edit_type="click">'+value.bookAddition+'</span></td>'+
+            '<td><span class="row_data" col_name="libraryName" edit_type="click">'+value.libraryName+'</span></td>'+
+            '<td><span class="row_data" col_name="libraryAddress" edit_type="click">'+value.libraryAddress+'</span></td>'+
+            '<td><span class="row_data" col_name="username" edit_type="click">'+username+'</span></td>'+
+           "</tr>");
+           var name = "";
+           if(value.userID !== null ) {
+               name = "Renew Book";
+           } else {
+               name = "Check Out Book";
+           }
+           $("#bookinfoModal").append("<button id='checkOutBook' class='checkOutBook usrin' type='button'>"+name+"</button>");
+           $("#bookinfoModal").append("<button id='trashButton' class='trashButton admin' type='button' onclick='deleteBook("+value.bookID+")'></button>");
+           $("#trashButton").append("<i class='glyphicon glyphicon-trash'></i>");
+           
+        
+     });
+     if (getCookie('userID') != "") {
+        document.getElementById("checkOutBook").style.display="block";
+    } 
+    if(getCookie("position") != "admin") {
+        document.getElementById("trashButton").style.display='none';
+    } else {
+        document.getElementById("trashButton").style.display="block";
+    }
+}
+
+    
+
 
 $(document).on("click", '#checkOutBook', function() {
     var table = document.getElementById("bookinfoTable"); 

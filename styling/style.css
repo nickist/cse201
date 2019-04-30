@@ -89,11 +89,6 @@ h3 {
   display: none;
   width: 200px;
   height: 50px;
-  -webkit-animation: fadein 1s; /* Safari, Chrome and Opera > 12.1 */
-       -moz-animation: fadein 1s; /* Firefox < 16 */
-        -ms-animation: fadein 1s; /* Internet Explorer */
-         -o-animation: fadein 1s; /* Opera < 12.1 */
-            animation: fadein 1s;
   border-radius: 25px;
   opacity: .7;
   text-align: center;
@@ -108,31 +103,9 @@ h3 {
   z-index: 99;
 }
 
-@keyframes fadein {
-  from { opacity: 0; }
-  to   { opacity: .7; }
-}
-
-/* Firefox < 16 */
-@-moz-keyframes fadein {
-  from { opacity: 0; }
-  to   { opacity: .7; }
-}
-
-/* Safari, Chrome and Opera > 12.1 */
-@-webkit-keyframes fadein {
-  from { opacity: 0; }
-  to   { opacity: .7; }
-}
-
-/* Internet Explorer */
-@-ms-keyframes fadein {
-  from { opacity: 0; }
-  to   { opacity: .7; }
-}
-
 .wrapper {
   width: 100%;
+  
 }
 
 
@@ -151,6 +124,7 @@ select {
 }
 
 .header {
+
   display:flex;
   justify-content: space-between;
   background: var(--navBackground);
@@ -182,6 +156,7 @@ select {
 }
 .contentimg {
   flex: 1;
+  margin-top: 2em;
   width:150px;
   height:200px;
 
@@ -280,11 +255,13 @@ ul.sidenav li a:hover:not(.active) {
 }
 [class*='Contentrow'] {
   flex: 1;
+  flex-flow: wrap;
   display: flex;
 
 }
 [class*='box'] {
   flex: 1;
+  margin: 2px;
   flex-wrap: wrap;
   color:white;
 }
@@ -529,19 +506,23 @@ div.content {
   ul.sidenav li a {
     text-align: center;
   }
+
   .contentimg {
     width:100px;
     height:125px
   }
+  
  
+  body html {
+    width: 100%;
+  }
+
   .bookinfoimg {
     width:100px;
     height:125px
   }
 
-  div.content {
-    position: center;
-  }
+
 }
 
 @media screen and (max-width: 300px) {
@@ -556,9 +537,6 @@ div.content {
     text-align: center;
   }
  
-  div.content {
-    position: center;
-  }
 }
 
 

@@ -1,4 +1,9 @@
 
+// var source = new EventSource("user/addUser.php");
+// source.onmessage = function(event) {
+//   notify(event);
+// };
+
 function toggleMenu(x) {
     var menuBox = document.getElementById('menu-box');
     if(menuBox.style.display == "block") { // if is menuBox displayed, hide it
@@ -87,6 +92,7 @@ function filePreview(input) {
       var reader = new FileReader();
 
       reader.onload = function (e) {
+        // var image = $(".uploadImg");
           $('.uploadImg').attr("src", e.target.result);
       }
       reader.readAsDataURL(input.files[0]);

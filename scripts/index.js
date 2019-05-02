@@ -1,9 +1,4 @@
 
-// var source = new EventSource("user/addUser.php");
-// source.onmessage = function(event) {
-//   notify(event);
-// };
-
 function toggleMenu(x) {
     var menuBox = document.getElementById('menu-box');
     if(menuBox.style.display == "block") { // if is menuBox displayed, hide it
@@ -92,7 +87,6 @@ function filePreview(input) {
       var reader = new FileReader();
 
       reader.onload = function (e) {
-        // var image = $(".uploadImg");
           $('.uploadImg').attr("src", e.target.result);
       }
       reader.readAsDataURL(input.files[0]);
@@ -139,10 +133,10 @@ function fillSearchResult(results, filt) {
           $('.autocomplete-items').append("<div><strong>"+value.author+"</strong></div>");
           break;
         case "bookAddition":
-          $('.autocomplete-items').append("<div><strong>"+value.bookAddition+"</strong></div>");
+          $('.autocomplete-items').append("<div><strong>"+value.bookAddition+ " (" + value.bookName + ")</strong></div>");
           break;
         case "libraryName":
-          $('.autocomplete-items').append("<div><strong>"+value.libraryName+"</strong></div>");
+          $('.autocomplete-items').append("<div><strong>"+value.bookName + " (" + value.libraryName +")</strong></div>");
           break;
         default:
           $('.autocomplete-items').append("<div><strong>"+value.bookName+"</strong></div>");

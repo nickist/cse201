@@ -19,3 +19,5 @@ rm /var/www/html/cse201/config.php;
 cp ~/config.php /var/www/html/cse201;
 
 mysql -u thatztheapp -p -h thatztheappdb.cgno0mrglkzy.us-east-2.rds.amazonaws.com < /var/www/html/cse201/databaseCreate.sql
+
+echo "please go to https://thatzthebook.duckdns.org/cse201 to access the site";

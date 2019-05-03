@@ -27,6 +27,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     echo "File is an image - " . $check["mime"] . ".";
                     $uploadOk = 1;
                 } else {
+                    $target_file = "img/default.png";
                     echo json_encode(array("Message" => "File is not an image."));
                     $uploadOk = 0;
                 }

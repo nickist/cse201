@@ -16,7 +16,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             header('location: ../index.html');
         } else if (isset($_POST['username'])){
 
-                        $target_dir = "img/";
+                        $target_dir = "user/img/";
             $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
             $uploadOk = 1;
             $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
@@ -63,8 +63,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     $name = htmlspecialchars($_POST['name']);
                     $password = htmlspecialchars($_POST['password']);
                     $user = new User($db);
-                    $file = "user/" . $target_file;
-                    if($user->addUser($username, $password, $name, $file)) {
+                    if($user->addUser($username, $password, $name, $target_file)) {
                         loginUser($user);
                         echo json_encode("true");
                     } else {

@@ -63,6 +63,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     $name = htmlspecialchars($_POST['name']);
                     $password = htmlspecialchars($_POST['password']);
                     $user = new User($db);
+                    $file = "user/" . $target_file;
                     if($user->addUser($username, $password, $name, $target_file)) {
                         loginUser($user);
                         echo json_encode("true");
@@ -70,7 +71,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         echo json_encode(array("Message" => "user created"));
                     }
                 } else {
-                    echo json_encode(array("Message" => "Sorry, there was an error uploading your file."));
+                    $database = new Database();
+                    $db = $database->connect();
+                    $username = htmlspecialchars($_POST['username']);
+                    $name = htmlspecialchars($_POST['name']);
+                    $password = htmlspecialchars($_POST['password']);
+                    $user = new User($db);
+                    $file = "user/img/default.png";
+                    $user->addUser($username, $password, $name, $file);
+                    echo json_encode("Sorry, there was an error uploading your file. a default was used");
                 }
             }
 

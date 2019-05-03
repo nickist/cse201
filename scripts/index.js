@@ -369,8 +369,8 @@ $(function () {
       data: $('#addBookForm').serialize(),
       success: function ( data ) {
         if(data !== 'undefined'){
-          var json = JSON.parse(data);
-      }
+          console.log(data);
+        }
           location.reload();
       },
       error: function(jqXhr, textStatus, errorThrown) {

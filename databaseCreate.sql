@@ -1,8 +1,12 @@
-﻿DROP DATABASE IF EXISTS thatztheappdb;
+﻿DROP DATABASE IF EXISTS thatzthebookdb;
 
-CREATE DATABASE IF NOT EXISTS thatztheappdb;
+CREATE DATABASE IF NOT EXISTS thatzthebookdb;
 
-USE thatztheappdb;
+CREATE USER 'thatzthebookuser'@'localhost' IDENTIFIED BY 'password';
+
+GRANT ALL PRIVILEGES ON thatzthebookdb . * TO 'thatzthebookuser'@'localhost';
+
+USE thatzthebookdb;
 
 CREATE TABLE users (
     userID INT(1) AUTO_INCREMENT NOT NULL PRIMARY KEY,
@@ -96,4 +100,9 @@ VALUES("All Quiet on the Western Front", 0, "5th", "Erich Maria Remarque", "http
 INSERT INTO users (username, name, passhash, position)
 VALUES ('nickist','nick','$2y$12$zENgdAky36t15RNazJ1WkuUdRoLph6kjc5ZPG7RDxeOKhqIvR6J8G','admin');
 INSERT INTO users (username, name, passhash, position)
-VALUES ('TomRyan','tom','$2y$12$W324x/oqIQHl6QucLDlSeejaeOeWscK4Rl.5cOEdMBD/cuPkAh8o6','user');
+VALUES ('TomRyan','tom','$2y$12$W324x/oqIQHl6QucLDlSeejaeOeWscK4Rl.5cOEdMBD/cuPkAh8o6','user');DROP DATABASE IF EXISTS thatzthebookdb;
+
+
+
+
+

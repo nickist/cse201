@@ -2,7 +2,7 @@
 
 CREATE DATABASE IF NOT EXISTS thatzthebookdb;
 
-CREATE USER 'thatzthebookuser'@'localhost' IDENTIFIED BY 'password';
+CREATE USER 'thatzthebookuser'@'localhost' IDENTIFIED BY 'aidhv87ah8fh98*899988&^yuu';
 
 GRANT ALL PRIVILEGES ON thatzthebookdb . * TO 'thatzthebookuser'@'localhost';
 

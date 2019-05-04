@@ -12,10 +12,22 @@ rm -rf /var/www/html/cse201;
 
 git clone git://github.com/nickist/cse201.git /var/www/html/cse201;
 
-rm /var/www/html/cse201/config.php;
+mysql -u root <<-EOF
+UPDATE mysql.user SET Password=PASSWORD('$rootpass') WHERE User='root';
+DELETE FROM mysql.user WHERE User='root' AND Host NOT IN ('localhost', '127.0.0.1', '::1');
+DELETE FROM mysql.user WHERE User='';
+DELETE FROM mysql.db WHERE Db='test' OR Db='test_%';
+FLUSH PRIVILEGES;
+EOF
 
-cp ~/config.php /var/www/html/cse201;
+mysql -u root -p  < /var/www/html/cse201/databaseCreate.sql
 
-mysql -u thatzthebookuser -p  < /var/www/html/cse201/databaseCreate.sql
+apt-get install software-properties-common
+add-apt-repository ppa:certbot/certbot
+apt-get update
+apt-get install python-certbot-apache
+
+certbot --apache -d thatzthebook.duckdns.org -d thatzthebook.duckdns.org
+
 
 echo "please go to https://thatzthebook.duckdns.org/cse201 to access the site";

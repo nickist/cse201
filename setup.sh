@@ -12,14 +12,6 @@ rm -rf /var/www/html/cse201;
 
 git clone git://github.com/nickist/cse201.git /var/www/html/cse201;
 
-mysql -u root <<-EOF
-UPDATE mysql.user SET Password=PASSWORD('$rootpass') WHERE User='root';
-DELETE FROM mysql.user WHERE User='root' AND Host NOT IN ('localhost', '127.0.0.1', '::1');
-DELETE FROM mysql.user WHERE User='';
-DELETE FROM mysql.db WHERE Db='test' OR Db='test_%';
-FLUSH PRIVILEGES;
-EOF
-
 mysql -u root -p  < /var/www/html/cse201/databaseCreate.sql
 
 apt-get install software-properties-common

@@ -18,7 +18,7 @@ DELETE FROM mysql.user WHERE User='root' AND Host NOT IN ('localhost', '127.0.0.
 DELETE FROM mysql.user WHERE User='';
 DELETE FROM mysql.db WHERE Db='test' OR Db='test_%';
 FLUSH PRIVILEGES;
-DROP USER 'thatzthebookuser'@'localhost';
+DROP USER IF EXISTS 'thatzthebookuser'@'localhost';
 CREATE USER 'thatzthebookuser'@'localhost' IDENTIFIED BY 'aidhv87ah8fh98*899988&^yuu';
 GRANT ALL PRIVILEGES ON thatzthebookdb.* TO 'thatzthebookuser'@'localhost';"
 

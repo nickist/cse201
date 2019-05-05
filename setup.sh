@@ -20,9 +20,9 @@ DELETE FROM mysql.db WHERE Db='test' OR Db='test_%';
 FLUSH PRIVILEGES;
 DROP USER IF EXISTS 'thatzthebookuser'@'localhost';
 CREATE USER 'thatzthebookuser'@'localhost' IDENTIFIED BY 'aidhv87ah8fh98*899988&^yuu';
-GRANT ALL PRIVILEGES ON thatzthebookdb.* TO 'thatzthebookuser'@'localhost';"
+GRANT ALL PRIVILEGES ON thatzthebookdb.* TO 'thatzthebookuser'@'localhost';";
 
-mysql -u root -p  < /var/www/html/cse201/databaseCreate.sql
+mysql -u root -p  < /var/www/html/cse201/databaseCreate.sql;
 
 apt-get install software-properties-common
 add-apt-repository ppa:certbot/certbot

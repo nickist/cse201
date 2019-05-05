@@ -1,8 +1,4 @@
-﻿DROP DATABASE IF EXISTS thatzthebookdb;
-
-CREATE DATABASE IF NOT EXISTS thatzthebookdb;
-
-DROP USER 'thatzthebookuser'@'localhost';
+﻿DROP USER 'thatzthebookuser'@'localhost';
 
 CREATE USER 'thatzthebookuser'@'localhost' IDENTIFIED BY 'aidhv87ah8fh98*899988&^yuu';
 
@@ -15,6 +11,10 @@ DELETE FROM mysql.db WHERE Db='test' OR Db='test_%';
 FLUSH PRIVILEGES;
 
 GRANT ALL PRIVILEGES ON thatzthebookdb.* TO 'thatzthebookuser'@'localhost';
+
+DROP DATABASE IF EXISTS thatzthebookdb;
+
+CREATE DATABASE IF NOT EXISTS thatzthebookdb;
 
 USE thatzthebookdb;
 

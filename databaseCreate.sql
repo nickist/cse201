@@ -1,18 +1,4 @@
-﻿DROP USER 'thatzthebookuser'@'localhost';
-
-CREATE USER 'thatzthebookuser'@'localhost' IDENTIFIED BY 'aidhv87ah8fh98*899988&^yuu';
-
-USE mysql;
-
-UPDATE mysql.user SET authentication_string=PASSWORD('iuahf87shd9goisd9f8g') WHERE User='root';
-DELETE FROM mysql.user WHERE User='root' AND Host NOT IN ('localhost', '127.0.0.1', '::1');
-DELETE FROM mysql.user WHERE User='';
-DELETE FROM mysql.db WHERE Db='test' OR Db='test_%';
-FLUSH PRIVILEGES;
-
-GRANT ALL PRIVILEGES ON thatzthebookdb.* TO 'thatzthebookuser'@'localhost';
-
-DROP DATABASE IF EXISTS thatzthebookdb;
+﻿DROP DATABASE IF EXISTS thatzthebookdb;
 
 CREATE DATABASE IF NOT EXISTS thatzthebookdb;
 

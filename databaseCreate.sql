@@ -2,7 +2,7 @@
 
 CREATE DATABASE IF NOT EXISTS thatzthebookdb;
 
-DELETE FROM mysql.user WHERE User = 'thatzthebookuser';
+DROP USER 'thatzthebookuser'@'localhost';
 
 CREATE USER 'thatzthebookuser'@'localhost' IDENTIFIED BY 'aidhv87ah8fh98*899988&^yuu';
 

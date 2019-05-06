@@ -1,20 +1,4 @@
-﻿USE mysql;
-UPDATE mysql.user SET authentication_string=PASSWORD('iuahf87shd9goisd9f8g') WHERE User='root';
-GRANT ALL PRIVILEGES ON *.* TO 'root'@'localhost';
-DELETE FROM mysql.user WHERE User='root' AND Host NOT IN ('localhost', '127.0.0.1', '::1');
-DELETE FROM mysql.user WHERE User='';
-DELETE FROM mysql.db WHERE Db='test' OR Db='test_%';
-FLUSH PRIVILEGES;
-DROP USER IF EXISTS 'thatzthebookuser'@'localhost';
-CREATE USER 'thatzthebookuser'@'localhost' IDENTIFIED BY 'aidhv87aHUBh8fh98yu';
-GRANT ALL PRIVILEGES ON *.* TO 'thatzthebookuser'@'localhost';
-
-
-DROP DATABASE IF EXISTS thatzthebookdb;
-
-CREATE DATABASE  thatzthebookdb;
-
-USE thatzthebookdb;
+﻿USE thatzthebookdb;
 
 CREATE TABLE users (
     userID INT(1) AUTO_INCREMENT NOT NULL PRIMARY KEY,

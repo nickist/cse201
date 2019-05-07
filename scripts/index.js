@@ -418,17 +418,7 @@ function deleteUser(userID) {
 }) 
 }
 
-function checkPassword(form) {
-    password1 = form.password.value;
-    password2 = form.repassword.value;
 
-  if (password1 != password2) {
-    notify("Password did not match: please try again")
-    return false;
-  }else {
-    return true;
-  }
-}
 
 
 

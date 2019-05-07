@@ -73,7 +73,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     $file = "user/" . $target_file;
                     if($user->addUser($username, $password, $name, $file)) {
                         loginUser($user);
-                        echo json_encode("true");
+                        header("location: ../index.html");
                     } else {
                         echo json_encode(array("Message" => "user created"));
                     }
@@ -86,7 +86,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     $user = new User($db);
                     $file = "user/".$target_file;
                     $user->addUser($username, $password, $name, $file);
-                    echo json_encode("Sorry, there was an error uploading your file. a default was used");
+                    echo json_encode(array("Message" => "Sorry, there was an error uploading your file. a default was used"));
+                    header("location: ../index.html");
                 }
             }
 

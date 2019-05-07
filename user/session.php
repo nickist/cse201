@@ -18,9 +18,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $user = new User($db);
             if ($user->validateUser($username, $password)) {
                 loginUser($user);
-                echo json_encode("true");
+                echo json_encode(array("Success" => "true"));
             } else {
-                echo json_encode("false");
+                echo json_encode(array("Message" => "false"));
             }
         } else {
             echo json_encode("already logged in");

@@ -2,7 +2,7 @@
     
     use PHPUnit\Framework\TestCase;
     
-    final class TestBook extends TestCase{
+    class TestBook extends TestCase {
 
         public function TestDefaultBook() {
             $this->assertInstanceOf(
@@ -28,8 +28,12 @@
         public function TestGetColumnName() {
             $this->assertInstanceOf(
                 Book::class,
-                Book::getColumnName("bookID");
+                Book::getColumnName("bookID")
             );
+        }
+
+        public function TestInvalidloginData() {
+            $this->assertFalse(Book::validateUser("",""));
         }
 
         public function TestsearchBook() {

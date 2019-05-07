@@ -339,10 +339,12 @@ $(function () {
     $.ajax({
       type: 'POST',
       url: '/cse201/user/session.php',
+      dataType: 'json',
       data: $('#loginForm').serialize(),
       success: function ( data ) {
         if("Message" in data) {
-          $("#addUserID").append("<div style='color:Red;'><strong>Username or Password incorrect</strong></div>");
+          $("#loginerrormsg").empty();
+          $("#loginerrormsg").append("<span style='color:Red; position: absolute;'><strong>Username or Password incorrect</strong></span>");
         } else {
           location.reload();
         }
@@ -362,7 +364,8 @@ $(function () {
     repass = $("#addrepass").val();
      if(pass != repass) {
       $("#errormsg").empty();
-      $("#errormsg").append("<span style='color:Red; display: absolute;'><strong>Passwords do not match</strong></span>");
+      $("#errormsg").append("<span style='color:Red; position: absolute;'><strong>Passwords do not match</strong></span>");
+      e.preventDefault();
      } else {
 
     $.ajax({

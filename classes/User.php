@@ -38,7 +38,7 @@
                 $this->filePath = $results['filePath'];
                 return true;
             } else {
-                return json_encode(array("Message" => "Invalid Username or Password"));
+                return false;
             }
         }
 
@@ -97,7 +97,6 @@
                 $statement->bindParam(":name", $name);
 
                 $statement->execute();
-                $this->con = null;
                 return true;
             }
 

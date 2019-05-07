@@ -14,7 +14,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             session_unset();
             session_destroy();
             header('location: ../index.html');
-        } if($_POST['password'] == $_POST['repassword']) {
+        } if($_POST['password'] != $_POST['repassword']) {
             echo json_encode(array("Message" => "passwords do not match"));
 
         } else if (isset($_POST['username'])){
@@ -25,15 +25,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
             // Check if image file is a actual image or fake image
             if(isset($_POST["submit"])) {
-                $check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
+                    $check = @getimagesize($_FILES["fileToUpload"]["tmp_name"]);
+                
                 if($check !== false) {
                     echo "File is an image";
                     $uploadOk = 1;
                 } else {
-                    echo json_encode(array("Message" => "File is not an image."));
+                    $target_file = "img/default.png";
                     $uploadOk = 0;
                 }
-                    // header('location: ../index.html');
 
             }
             // Check if file already exists
@@ -48,25 +48,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
               }
             }
             // Check file size
-            if ($_FILES["fileToUpload"]["size"] > 50000000) {
-                echo json_encode(array("Message" => "Sorry, your file is too large."));
+            if ($_FILES["fileToUpload"]["size"] > 50000000 && $uploadOk != 0) {
                 $uploadOk = 0;
             }
             // Allow certain file formats
             if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
-            && $imageFileType != "gif" ) {
-                echo json_encode(array("Message" => "Sorry, only JPG, JPEG, PNG & GIF files are allowed."));
+            && $imageFileType != "gif" && $uploadOk != 0) {
                 $uploadOk = 0;
             }
             // Check if $uploadOk is set to 0 by an error
             if ($uploadOk == 0) {
-                echo json_encode(array("Message" => "Sorry, your file was not uploaded."));
                 $target_file = "img/default.png";
             // if everything is ok, try to upload file
-            } else {
-                if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
+            } 
+                if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file) && $uploadOk != 0) {
                     
-                    echo "The file ". basename( $_FILES["fileToUpload"]["name"]). " has been uploaded.";
                     $database = new Database();
                     $db = $database->connect();
                     $username = htmlspecialchars($_POST['username']);
@@ -75,8 +71,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     $user = new User($db);
                     $file = "user/" . $target_file;
                     if($user->addUser($username, $password, $name, $file)) {
-                        loginUser($user);
-                        header("location: ../index.html");
+                        if($user->validateUser($username, $password)) {
+                            loginUser($user);
+                        }
+                        header('location: ../index.html');
                     } else {
                         echo json_encode(array("Message" => "user created"));
                     }
@@ -89,10 +87,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     $user = new User($db);
                     $file = "user/".$target_file;
                     $user->addUser($username, $password, $name, $file);
+                    if($user->validateUser($username, $password)) {
+                        loginUser($user);
+                        header('location: ../index.html');
+                    }
                     echo json_encode(array("Message" => "Sorry, there was an error uploading your file. a default was used"));
-                    header("location: ../index.html");
                 }
-            }
+            
 
             
         } else {

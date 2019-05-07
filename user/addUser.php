@@ -24,10 +24,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             if(isset($_POST["submit"])) {
                 $check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
                 if($check !== false) {
-                    echo "File is an image - " . $check["mime"] . ".";
+                    echo "File is an image";
                     $uploadOk = 1;
                 } else {
-                    $target_file = "img/default.png";
                     echo json_encode(array("Message" => "File is not an image."));
                     $uploadOk = 0;
                 }
@@ -36,8 +35,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             }
             // Check if file already exists
             if (file_exists($target_file)) {
-                echo json_encode(array("Message" => "file name already exists."));
-                $uploadOk = 0;
+                $counter = 0;
+                $newName = "";
+                $path_parts = pathinfo($target_file);
+                while (file_exists($target_file)) {
+                    $newName = $path_parts['dirname']."/".$path_parts['filename']."_". $counter. "." . $path_parts['extension'];
+                    $target_file = $newName;
+                    $counter++;
+              }
             }
             // Check file size
             if ($_FILES["fileToUpload"]["size"] > 50000000) {
@@ -53,6 +58,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             // Check if $uploadOk is set to 0 by an error
             if ($uploadOk == 0) {
                 echo json_encode(array("Message" => "Sorry, your file was not uploaded."));
+                $target_file = "img/default.png";
             // if everything is ok, try to upload file
             } else {
                 if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
@@ -65,7 +71,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     $password = htmlspecialchars($_POST['password']);
                     $user = new User($db);
                     $file = "user/" . $target_file;
-                    if($user->addUser($username, $password, $name, $target_file)) {
+                    if($user->addUser($username, $password, $name, $file)) {
                         loginUser($user);
                         echo json_encode("true");
                     } else {
@@ -78,7 +84,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     $name = htmlspecialchars($_POST['name']);
                     $password = htmlspecialchars($_POST['password']);
                     $user = new User($db);
-                    $file = "user/img/default.png";
+                    $file = "user/".$target_file;
                     $user->addUser($username, $password, $name, $file);
                     echo json_encode("Sorry, there was an error uploading your file. a default was used");
                 }

@@ -124,14 +124,13 @@ function deleteBook (bookID) {
 function fillSearchResult(results, filt) {
   $('.autocomplete-items').empty();
   $(".autocomplete").empty();
+  $(".autocomplete").append("<div class='autocomplete-items' id=autocomplete-items>");
     $.each(results, function(key, value) {
         if ("Message" in results) {
-          $(".autocomplete").empty();
           $(".autocomplete-items").empty();
           $('.autocomplete-items').append("<div style='color:Red;'><strong>"+results['Message']+"</strong></div>");
         } else {
-          $(".autocomplete").append("<div class='autocomplete-items' id=autocomplete-items>");
-      switch (filt) {
+        switch (filt) {
         
         case "bookName":
           $('.autocomplete-items').append("<div><strong>"+value.bookName+"</strong></div>");

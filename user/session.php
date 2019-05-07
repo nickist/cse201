@@ -49,6 +49,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             echo "not and admin";
         }
 
+    } else if (isset($_GET['deleteUser']) && isset($_SESSION['position'])) {
+        if($_SESSION['position'] == 'admin') {
+            $userID = htmlspecialchars($_GET['userID']);
+            $user = new user($db);
+            $data = $user->deleteUser($userID);
+            echo $data;
+        }
     } else if (isset($_GET['getFees']) && isset($_GET['userID'])) {
         $userID = htmlspecialchars($_GET['getFees']);
         $user = new user($db);

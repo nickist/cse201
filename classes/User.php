@@ -113,8 +113,13 @@
             return json_encode($results);
         }
 
-        public function removeUser($userID) {
-            //remove user from database usig db class admin only
+        public function deleteUser($userID) {
+            //remove user from database using db class admin only
+            $statement = $this->con->prepare("DELETE FROM users WHERE userID = :userID"); 
+            $statement->bindParam(":userID", $userID, PDO::PARAM_INT);
+            $statement->execute();
+            $results = $statement->fetchAll(PDO::FETCH_ASSOC);
+            return json_encode($results);
 
         }
         public function updateUsername($userID) {

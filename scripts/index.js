@@ -380,7 +380,11 @@ $(function () {
   });
 });
 
-
+function deleteUser(userID) {
+  $.getJSON('user/session.php?deleteUser='+userID, function(results) {
+    location.reload();
+}) 
+}
 
 function checkPassword(form) {
     password1 = form.password.value;

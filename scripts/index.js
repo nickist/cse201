@@ -382,7 +382,7 @@ $(function () {
 
 function deleteUser(userID) {
   $.getJSON('user/session.php?deleteUser='+userID, function(results) {
-    location.reload();
+    getUsers();
 }) 
 }
 

@@ -51,7 +51,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     } else if (isset($_GET['deleteUser']) && isset($_SESSION['position'])) {
         if($_SESSION['position'] == 'admin') {
-            $userID = htmlspecialchars($_GET['userID']);
+            $userID = htmlspecialchars($_GET['deleteUser']);
             $user = new user($db);
             $data = $user->deleteUser($userID);
             echo $data;

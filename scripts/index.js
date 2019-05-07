@@ -123,10 +123,16 @@ function deleteBook (bookID) {
 
 function fillSearchResult(results, filt) {
   $('.autocomplete-items').empty();
-  $(".autocomplete").append("<div class='autocomplete-items' id=autocomplete-items>");
+  $(".autocomplete").empty();
     $.each(results, function(key, value) {
-
+        if ("Message" in results) {
+          $(".autocomplete").empty();
+          $(".autocomplete-items").empty();
+          $('.autocomplete-items').append("<div style='color:Red;'><strong>"+results['Message']+"</strong></div>");
+        } else {
+          $(".autocomplete").append("<div class='autocomplete-items' id=autocomplete-items>");
       switch (filt) {
+        
         case "bookName":
           $('.autocomplete-items').append("<div><strong>"+value.bookName+"</strong></div>");
           break;
@@ -143,6 +149,7 @@ function fillSearchResult(results, filt) {
           $('.autocomplete-items').append("<div><strong>"+value.bookName+"</strong></div>");
           break;
       }
+    }
   });
   $(".autocomplete").append("</div>");
 }
@@ -167,7 +174,8 @@ $(function() {
       search = search+"%";
       $.getJSON('book/read.php?search='+search+'&filter='+filt, function(results) {
         if ("Message" in results) {
-          $(".autocomplete").append("<div class='autocomplete-items' id=autocomplete-items>");
+          $(".autocomplete-items").empty();
+          $(".autocomplete").append("<div class='autocomplete-items' id='autocomplete-items'>");
           $('.autocomplete-items').append("<div style='color:Red;'><strong>"+results['Message']+"</strong></div>");
           $(".autocomplete").append("</div>");
         } else {
@@ -209,23 +217,23 @@ $(document).ready(function() {
     var search = searchBox.value;
     var filt = filter.options[filter.selectedIndex].value;
     if (search == "") {
-      $.getJSON('book/read.php?books=1', function(results) {
         $('.autocomplete-items').empty();
-      })
     } else if (search.slice(-1) ==="%"){
       $.getJSON('book/read.php?search='+search+'&filter='+filt, function(results) {
-        if ("Message" in results) {
+        if("Message" in results) {
+
         } else {
           fillSearchResult(results, filt);
         }
-      })
+    })
     } else {
         search = search+"%";
         $.getJSON('book/read.php?search='+search+'&filter='+filt, function(results) {
-          if ("Message" in results) {
-        } else {
-          fillSearchResult(results, filt);
-        }
+          if("Message" in results) {
+
+          } else {
+            fillSearchResult(results, filt);
+          }
       })
     }
   })

@@ -6,13 +6,11 @@ apt upgrade;
 
 apt install php7.2 php7.2-mycrypt php7.2-mysql;
 
-apt install apache2 mysql-server;
+apt install apache2 mariadb-server;
 
 rm -rf /var/www/html/cse201;
 
 git clone git://github.com/nickist/cse201.git /var/www/html/cse201;
-
-mysql_secure_installation;
 
 mysql -u root -p  -e "
 USE mysql;
@@ -21,12 +19,11 @@ GRANT ALL PRIVILEGES ON *.* TO 'root'@'localhost';
 DELETE FROM mysql.user WHERE User='root' AND Host NOT IN ('localhost', '127.0.0.1', '::1');
 DELETE FROM mysql.user WHERE User='';
 DELETE FROM mysql.db WHERE Db='test' OR Db='test_%';
-DROP DATABASE IF EXISTS thatzthebookdb;
 CREATE DATABASE  thatzthebookdb;
 FLUSH PRIVILEGES;
 DROP USER IF EXISTS 'thatzthebookuser'@'localhost';
 CREATE USER 'thatzthebookuser'@'localhost' IDENTIFIED BY 'aidhv87aHUBh8fh98yu';
-GRANT ALL PRIVILEGES ON thatzthebookdb.* TO 'thatzthebookuser'@'localhost';
+GRANT ALL PRIVILEGES ON *.* TO 'thatzthebookuser'@'localhost';
 FLUSH PRIVILEGES;";
 
 systemctl restart mariadb;
@@ -40,5 +37,4 @@ apt-get install python-certbot-apache
 
 certbot --apache -d thatzthebook.duckdns.org -d thatzthebook.duckdns.org
 
-
-echo "please go to https://thatzthebook.duckdns.org/cse201 to access the site";
+chown -R www-data:www-data /var/www/html/cse201;

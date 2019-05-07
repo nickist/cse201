@@ -29,7 +29,7 @@ FLUSH PRIVILEGES;";
 
 systemctl restart mariadb;
 
-mysql -u thatzthebookuser -p[aidhv87aHUBh8fh98yu] thatzthebookdb < /var/www/html/cse201/databaseCreate.sql;
+mysql -u thatzthebookuser -p < /var/www/html/cse201/databaseCreate.sql;
 
 apt-get install software-properties-common
 add-apt-repository ppa:certbot/certbot

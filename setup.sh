@@ -4,9 +4,7 @@ apt update;
 
 apt upgrade;
 
-apt install php7.2 php7.2-mycrypt php7.2-mysql;
-
-apt install apache2 mariadb-server;
+apt install apache2 mariadb-server php7.2 php7.2-mysql libapache2-mod-php5 -y;
 
 rm -rf /var/www/html/cse201;
 

@@ -64,12 +64,13 @@
     <br>
 
     <label for="psw"><b>Password</b></label>
-    <input type="password" placeholder="Enter Password" name="password" required>
+    <input id="addpass" type="password" placeholder="Enter Password" name="password" required>
 
     <label for="psw"><b>Repeat Password</b></label>
-    <input type="password" placeholder="Repeat Password" name="repassword" required>
+    <input id="addrepass" type="password" placeholder="Repeat Password" name="repassword" required>
 
     <div class="modalContainer" style="background-color:#f1f1f1">
+        <span id='errormsg'></span>
         <button type="button" onclick="document.getElementById('addUserID').style.display = 'none'" class="cancelbtn">Cancel</button>
         <button id="whtbutton" type="submit" name="submit" value="upload">Add User</button>
     </div>

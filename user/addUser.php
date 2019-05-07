@@ -10,13 +10,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     
 
         if (!isset($_POST['username'], $_POST['name'],  $_POST['password'], $_POST['repassword'])){
-            echo "Message: not all information was provided";
+            echo json_encode(array("Message" => "Invalid Username or Password"));
             session_unset();
             session_destroy();
             header('location: ../index.html');
+        } if($_POST['password'] == $_POST['repassword']) {
+            echo json_encode(array("Message" => "passwords do not match"));
+
         } else if (isset($_POST['username'])){
 
-                        $target_dir = "img/";
+            $target_dir = "img/";
             $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
             $uploadOk = 1;
             $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));

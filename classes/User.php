@@ -10,6 +10,15 @@
             $this->con = $pdo;
         }
 
+        private function validateData($data) {
+            
+            if(count($data) < 1) {
+                return json_encode(array("Message" => "No Data Found"));
+            } else {
+                return json_encode($data);
+            }
+        }
+
         public function validateUser($username, $password) {
 
             if($username == "" || $password == "") {
@@ -29,7 +38,7 @@
                 $this->filePath = $results['filePath'];
                 return true;
             } else {
-                return false;
+                return json_encode(array("Message" => "Invalid Username or Password"));
             }
         }
 

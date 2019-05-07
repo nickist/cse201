@@ -157,11 +157,7 @@ function fillSearchResult(results, filt) {
 function notify(results) {
 
 $(".notification").empty();
-  $(".notification").append("<h3>"+results["Message"]+"</h3>");
-    $(".notification").show();
-  setTimeout(function() {
-    $(".notification").hide();
-  }, 3000)
+  
 }
 
 $(function() {
@@ -345,7 +341,11 @@ $(function () {
       url: '/cse201/user/session.php',
       data: $('#loginForm').serialize(),
       success: function ( data ) {
-        location.reload();
+        if("Message" in data) {
+          $("#addUserID").append("<div style='color:Red;'><strong>Username or Password incorrect</strong></div>");
+        } else {
+          location.reload();
+        }
       },
       error: function(jqXhr, textStatus, errorThrown) {
         console.log( errorThrown );
@@ -354,6 +354,34 @@ $(function () {
   });
 });
 
+
+$(function () {
+
+  $('#addUserForm').on('submit', function(e) {
+    pass = $("#addpass").val();
+    repass = $("#addrepass").val();
+     if(pass != repass) {
+      $("#errormsg").empty();
+      $("#errormsg").append("<span style='color:Red; display: absolute;'><strong>Passwords do not match</strong></span>");
+     } else {
+
+    $.ajax({
+      type: 'POST',
+      url: '/cse201/user/addUser.php',
+      success: function ( data ) {
+        if("Message" in data) {
+          // $(".modalContainer").append("<div id='errormsg' style='color:Red;'><strong>Username or Password incorrect</strong></div>");
+        } else {
+          location.reload();
+        }
+      },
+      error: function(jqXhr, textStatus, errorThrown) {
+        console.log( errorThrown );
+      }
+    });
+  }
+  });
+});
 
 
 function loadModal(id, filename) {

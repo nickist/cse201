@@ -123,7 +123,6 @@ function deleteBook (bookID) {
 
 function fillSearchResult(results, filt) {
   $('.autocomplete-items').empty();
-  $(".autocomplete").empty();
   $(".autocomplete").append("<div class='autocomplete-items' id=autocomplete-items>");
     $.each(results, function(key, value) {
         if ("Message" in results) {

@@ -1,9 +1,3 @@
-
-// var source = new EventSource("user/addUser.php");
-// source.onmessage = function(event) {
-//   notify(event);
-// };
-
 function toggleMenu(x) {
     var menuBox = document.getElementById('menu-box');
     if(menuBox.style.display == "block") { // if is menuBox displayed, hide it
@@ -131,6 +125,7 @@ function fillSearchResult(results, filt) {
   $('.autocomplete-items').empty();
   $(".autocomplete").append("<div class='autocomplete-items' id=autocomplete-items>");
     $.each(results, function(key, value) {
+
       switch (filt) {
         case "bookName":
           $('.autocomplete-items').append("<div><strong>"+value.bookName+"</strong></div>");
@@ -148,7 +143,6 @@ function fillSearchResult(results, filt) {
           $('.autocomplete-items').append("<div><strong>"+value.bookName+"</strong></div>");
           break;
       }
-
   });
   $(".autocomplete").append("</div>");
 }
@@ -173,7 +167,9 @@ $(function() {
       search = search+"%";
       $.getJSON('book/read.php?search='+search+'&filter='+filt, function(results) {
         if ("Message" in results) {
-            notify(results);
+          $(".autocomplete").append("<div class='autocomplete-items' id=autocomplete-items>");
+          $('.autocomplete-items').append("<div style='color:Red;'><strong>"+results['Message']+"</strong></div>");
+          $(".autocomplete").append("</div>");
         } else {
           mainPage(results);
         }

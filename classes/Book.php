@@ -78,11 +78,14 @@
         }
 
         private function validateData($data) {
-            
-            if(count($data) < 1) {
-                return json_encode(array("Message" => "No Data Found"));
+            if(is_array($data)) {
+                if (count($data) < 1) {
+                    return json_encode(array("Message" => "No Data Found"));
+                } else {
+                    return json_encode($data);
+                }
             } else {
-                return json_encode($data);
+                return $data;
             }
         }
 

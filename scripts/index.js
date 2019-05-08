@@ -173,6 +173,7 @@ $(function() {
           $('.autocomplete-items').append("<div style='color:Red;'><strong>"+results['Message']+"</strong></div>");
           $(".autocomplete").append("</div>");
         } else {
+          $("#searchText").val("");
           mainPage(results);
         }
       })
@@ -180,9 +181,10 @@ $(function() {
 })
 
 function approveBook(id, approveBit) {
+  // send approve bit 1 for approved 0 for not approved
   $.getJSON('book/read.php?approveBook='+id+"&approveBit="+approveBit, 
   function(results) {
-      location.reload(true);
+      location.reload();
     })
 }
 
@@ -399,11 +401,9 @@ $(function () {
     $.ajax({
       type: 'POST',
       url: 'book/read.php',
+      dataType: 'json',
       data: $('#addBookForm').serialize(),
-      success: function ( data ) {
-        if(data !== 'undefined'){
-          console.log(data);
-        }
+      success: function () {
           location.reload();
       },
       error: function(jqXhr, textStatus, errorThrown) {
@@ -416,6 +416,7 @@ $(function () {
 function deleteUser(userID) {
   $.getJSON('user/session.php?deleteUser='+userID, function(results) {
     getUsers();
+    location.reload();
 }) 
 }
 

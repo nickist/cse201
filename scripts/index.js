@@ -117,7 +117,7 @@ function getUsers() {
 function deleteBook (bookID) {
     document.getElementById('bookinfo').style.display = 'none';
     $.getJSON('book/read.php?deleteBook='+bookID, function(results) {
-      location.reload();
+      needsApproved();
     });
 }
 
@@ -182,9 +182,9 @@ $(function() {
 
 function approveBook(id, approveBit) {
   // send approve bit 1 for approved 0 for not approved
-  $.getJSON('book/read.php?approveBook='+id+"&approveBit="+approveBit, 
-  function(results) {
-      location.reload();
+    $.getJSON('book/read.php?approveBook='+id+"&approveBit="+approveBit, function() {
+        needsApproved();
+        location.reload();
     })
 }
 

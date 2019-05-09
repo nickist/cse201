@@ -26,7 +26,7 @@ GRANT ALL PRIVILEGES ON *.* TO 'thatzthebookuser'@'localhost';
 FLUSH PRIVILEGES;";
 
 systemctl restart mariadb;
-
+echo "Use the Password inside the setup file";
 mysql -u thatzthebookuser -p < /var/www/html/cse201/databaseCreate.sql;
 
 apt-get install software-properties-common

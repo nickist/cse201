@@ -205,6 +205,25 @@
             
         }
 
+        public function getBookCheckedOutBy($userID, $bookID) {
+            if($userID == NULL) {
+                return false;
+            }
+            $query = "SELECT books.bookName, books.bookID, books.bookAddition, books.filePath, books.author, books.dueDate,
+            libraries.libraryAddress, libraries.libraryName, 
+            users.username, users.userID, users.fees
+                FROM books JOIN libraries ON books.libraryID = libraries.libraryID
+                    JOIN users ON books.userID = users.userID
+                WHERE books.isapproved = 1 AND books.userID = :userID AND books.bookID = :bookID;";
+            $stmt = $this->con->prepare($query);
+            $stmt->bindParam(":userID", $userID, PDO::PARAM_INT);
+            $stmt->bindParam(":bookID", $bookID, PDO::PARAM_INT);
+            $stmt->execute();
+            $results = $stmt->fetch(pdo::FETCH_ASSOC);
+            return $results['username'];
+            
+        }
+
         public function updateBookFees() {
             $query = "UPDATE books b 
             JOIN users u 
@@ -233,6 +252,15 @@
             $stmt->bindParam(":columnValue", $columnValue, PDO::PARAM_INT);
             $stmt->bindParam(":bookID", $bookID, PDO::PARAM_INT);
             return $this->validateData($stmt->execute());
+        }
+
+        public function getBookNameByID($bookID) {
+            $query = "SELECT bookName FROM books WHERE bookID = :bookID";
+            $stmt = $this->con->prepare($query);
+            $stmt->bindParam(":bookID", $bookID, PDO::PARAM_STR);
+            $stmt->execute();
+            $results = $stmt->fetch(PDO::FETCH_ASSOC);
+            return $results['bookName'];
         }
 
         public function getBookIDByName($bookname) {

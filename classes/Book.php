@@ -37,7 +37,7 @@
             $stmt = $this->con->prepare($query);
             $stmt->bindParam(":bookID", $id, PDO::PARAM_INT);
             $stmt->execute();
-            return json_encode($stmt->fetch(PDO::FETCH_ASSOC));
+            return json_encode($stmt->fetchAll(PDO::FETCH_ASSOC));
         }
 
         public function readApproveBit($bookID) {

@@ -7,7 +7,6 @@ function showElement(i) {
 
 function showBookInfo(id,i) {
     $('.bookinfoTable').empty();
-    var flag;
     $(".trashButton").remove();
     $("#checkOutBook").remove();
     $("#renewBook").remove();

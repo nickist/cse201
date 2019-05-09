@@ -30,14 +30,23 @@
 
         public function readOne($id) {
 
-            $query = "SELECT b.bookID, b.bookName, b.author, b.filePath, b.bookAddition, lib.libraryName, lib.libraryAddress, usr.username, usr.userID FROM books b 
+            $query = "SELECT b.bookID, b.bookName, b.isapproved, b.author, b.filePath, b.bookAddition, lib.libraryName, lib.libraryAddress, usr.username, usr.userID FROM books b 
             LEFT JOIN libraries lib ON b.libraryID = lib.libraryID
             LEFT JOIN users usr ON b.userID = usr.userID
             WHERE bookID=:bookID";
             $stmt = $this->con->prepare($query);
             $stmt->bindParam(":bookID", $id, PDO::PARAM_INT);
             $stmt->execute();
-            return $this->validateData($stmt->fetchAll(PDO::FETCH_ASSOC));
+            return $this->validateData($stmt->fetch(PDO::FETCH_ASSOC));
+        }
+
+        public function readApproveBit($bookID) {
+            $query = "SELECT isapproved FROM books WHERE bookID = :bookID";
+            $stmt = $this->con->prepare($query);
+            $stmt->bindParam(":bookID", $bookID, PDO::PARAM_INT);
+            $stmt->execute();
+            $results = $stmt->fetch(PDO::FETCH_ASSOC);
+            return $results['isapproved'];
         }
 
         public function addBook($bookName, $bookAddition, $author, $filePath, $libraryID){
@@ -49,7 +58,13 @@
             $stmt->bindParam(":author", $author, PDO::PARAM_INT);
             $stmt->bindParam(":filePath", $filePath, PDO::PARAM_INT);
             $stmt->bindParam(":libraryID", $libraryID, PDO::PARAM_INT);
-            return $this->validateData($stmt->execute());
+            $stmt->execute();
+            $rowCount = $stmt->rowCount();
+            if ($rowCount > 0) {
+                return true;
+            } else {
+                return false;
+            }
         }
 
         private function getColumnName($name) {
@@ -149,7 +164,13 @@
             $query = "DELETE FROM books WHERE bookID=:bookID";
             $stmt = $this->con->prepare($query);
             $stmt->bindParam(":bookID", $id, PDO::PARAM_INT);
-            return $this->validateData($stmt->execute());
+            $stmt->execute();
+            $rowCount = $stmt->rowCount();
+            if($rowCount > 0) {
+                return true;
+            } else {
+                return false;
+            }
         }
 
         public function checkOutBook($bookID, $userID) {
@@ -212,6 +233,15 @@
             $stmt->bindParam(":columnValue", $columnValue, PDO::PARAM_INT);
             $stmt->bindParam(":bookID", $bookID, PDO::PARAM_INT);
             return $this->validateData($stmt->execute());
+        }
+
+        public function getBookIDByName($bookname) {
+            $query = "SELECT bookID FROM books WHERE bookName = :bookName";
+            $stmt = $this->con->prepare($query);
+            $stmt->bindParam(":bookName", $bookname, PDO::PARAM_STR);
+            $stmt->execute();
+            $results = $stmt->fetch(PDO::FETCH_ASSOC);
+            return $results['bookID'];
         }
 
     }

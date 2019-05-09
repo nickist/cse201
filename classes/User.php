@@ -1,11 +1,14 @@
 <?php
-    class User {
+use PHPUnit\Runner\ResultCacheExtension;
+
+class User {
         private $username;
         private $name;
         private $position;
         private $userID;
         private $con;
         private $filePath;
+
         function __construct($pdo) {
             $this->con = $pdo;
         }
@@ -66,7 +69,7 @@
             $stmt = $this->con->prepare($query);
             $stmt->bindParam(":columnValue", $columnValue, PDO::PARAM_INT);
             $stmt->bindParam(":userID", $userID, PDO::PARAM_INT);
-            return json_encode($stmt->execute());
+            return $columnValue;
         }
 
 
@@ -80,11 +83,10 @@
             $statement = $this->con->prepare("SELECT * FROM users WHERE username=:username"); 
             $statement->bindParam(':username', $username);
             $statement->execute();
-            
-            if ($statement->rowCount() > 0) {
+            $rowCount = $statement->rowCount();
+            if ($rowCount > 0) {
                 return false;
             } else {
-                $position = "user";
                 $options = [
                     'cost' => 12
                 ];
@@ -126,9 +128,12 @@
             $statement = $this->con->prepare("DELETE FROM users WHERE userID = :userID"); 
             $statement->bindParam(":userID", $userID, PDO::PARAM_INT);
             $statement->execute();
-            $results = $statement->fetchAll(PDO::FETCH_ASSOC);
-            return json_encode($results);
-
+            $rowCount = $statement->rowCount();
+            if($rowCount > 0) {
+                return true;
+            } else {
+                return false;
+            }
         }
         public function updateUsername($userID) {
             //update username
@@ -145,8 +150,30 @@
         public function getName() { return $this->name; }
         public function getUserName() { return $this->username; }
         public function getPosition() { return $this->position; }
-        public function getUserID() { return $this->userID; }
-        public function getFilePath() { return $this->filePath; }
+
+        public function getUserByID($userID) {
+            $statement = $this->con->prepare("SELECT username FROM users WHERE userID = :userID"); 
+            $statement->bindParam(":userID", $userID, PDO::PARAM_INT);
+            $statement->execute();
+            $results = $statement->fetch(PDO::FETCH_ASSOC);
+            return $results['username'];
+            
+        }
+
+        public function getUserIDByName($username) {
+            $statement = $this->con->prepare("SELECT userID FROM users WHERE username = :username"); 
+            $statement->bindParam(":username", $username, PDO::PARAM_INT);
+            $statement->execute();
+            $results = $statement->fetch(PDO::FETCH_ASSOC);
+            return $results['userID'];
+        }
+        public function getFilePath($username) { 
+            $statement = $this->con->prepare("SELECT filePath FROM users WHERE username = :username"); 
+            $statement->bindParam(":username", $username, PDO::PARAM_INT);
+            $statement->execute();
+            $results = $statement->fetch(PDO::FETCH_ASSOC);
+            return $results['filePath'];
+         }
     };
 
 ?>

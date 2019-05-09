@@ -150,7 +150,7 @@ class User {
         public function getName() { return $this->name; }
         public function getUserName() { return $this->username; }
         public function getPosition() { return $this->position; }
-
+        public function getUserID() { return $this->userID; }
         public function getUserByID($userID) {
             $statement = $this->con->prepare("SELECT username FROM users WHERE userID = :userID"); 
             $statement->bindParam(":userID", $userID, PDO::PARAM_INT);

@@ -7,6 +7,6 @@ session_start();
         $_SESSION['position'] = $user->getPosition();
         setcookie('userID', $user->getUserID(), time() + 25000, '/');
         setcookie('position', $user->getPosition(), time() + 25000, '/');
-        setcookie('filePath', $user->getFilePath(), time() + 25000, '/');
+        setcookie('filePath', $user->getUserFilePath(), time() + 25000, '/');
     }
 ?>
